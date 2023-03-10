@@ -23,7 +23,7 @@
       <p @click='hideChpaters = !hideChpaters' v-show="BookInfo.name" bg-dark text-white p-2 rd cursor-pointer
         hover="opacity-75 text-active">隐藏目录</p>
       <ul id="chapter-list" v-show="hideChpaters">
-        <li v-for="chapter in chapterList">{{ chapter }}</li>
+        <li v-for="chapter in chapterList" :title="chapter">{{ chapter }}</li>
 
       </ul>
     </fieldset>
