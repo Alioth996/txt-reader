@@ -3,11 +3,14 @@ import { resolve } from 'path'
 import vue from '@vitejs/plugin-vue'
 // import vueJsx from '@vitejs/plugin-vue-jsx'
 import UnoCSS from 'unocss/vite'
+
+import AutoImport from 'unplugin-auto-import/vite'
 import { presetAttributify, presetUno } from 'unocss'
 
 export default defineConfig({
   plugins: [
     vue(),
+    AutoImport({ cache: true, resolvers: [], imports: ['vue'], dts: './auto-imports.d.ts' }),
     // vueJsx(),
     UnoCSS({
       presets: [presetAttributify({}), presetUno()],
