@@ -77,7 +77,7 @@ const uploadBook = (e: Event) => {
 
 }
 
-// 获取正文
+// 获取正文  todo:使用 web-worker开启后台线程解析小说
 function getBookBody(book: Blob) {
   const reader = new FileReader()
   reader.readAsText(book)
