@@ -1,0 +1,17 @@
+html,
+body {
+  margin: 0;
+  width: 100vw;
+  height: auto;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 12px 30px 12px 12px;
+}
