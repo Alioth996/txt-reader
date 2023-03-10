@@ -1,4 +1,4 @@
-import { createWebHistory, createRouter, RouteRecordRaw } from 'vue-router'
+import { createWebHashHistory, createRouter, RouteRecordRaw } from 'vue-router'
 
 import Home from '@/views/Home/index.vue'
 
@@ -10,7 +10,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/home',
     meta: {
-      title: '文曲星-主页'
+      title: '文曲阅读-主页'
     },
     component: Home
   },
@@ -25,7 +25,7 @@ const routes: RouteRecordRaw[] = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes
 })
 
