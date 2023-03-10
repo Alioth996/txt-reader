@@ -82,9 +82,9 @@ menu {
   list-style: none;
 }
 
-fieldset,
 img {
   border: 0;
+  display: block;
 }
 
 img,
@@ -160,8 +160,4 @@ del {
 sup,
 sub {
   vertical-align: baseline;
-}
-
-* {
-  box-sizing: border-box;
 }
