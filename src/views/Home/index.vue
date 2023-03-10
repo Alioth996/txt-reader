@@ -1,11 +1,11 @@
 
 <template>
   <!-- 1rem = 4px -->
-  <div bg-bookbg wh-full id="home" p-5>
+  <div bg-bookbg wh-full id="home" p-5 flex flex-col items-center gap="3xl">
     <p>
       <input type="file" name="txt-file" accept=".txt" @change='uploadBook' />
     </p>
-    <fieldset>
+    <fieldset p5>
       <legend>书籍信息</legend>
       <div text-light p-y-4>
 
@@ -13,25 +13,25 @@
         <p py-1>作者: {{ BookInfo.author ?? '未知' }}</p>
         <p py-1>更新时间: {{ BookInfo.uploadTime }}</p>
         <p>大小: {{ BookInfo.size }}</p>
-
-
       </div>
 
     </fieldset>
 
-    <fieldset>
+    <fieldset p5>
       <legend>目录</legend>
-      <h3 text-light p-y-4></h3>
-      <ul id="chapter-list">
+      <h3 text-light p-y-4 text-2xl v-show="BookInfo.name">&lt;&lt; {{ BookInfo.name }} >> 目录</h3>
+      <p @click='hideChpaters = !hideChpaters' v-show="BookInfo.name" bg-dark text-white p-2 rd cursor-pointer
+        hover="opacity-75 text-active">隐藏目录</p>
+      <ul id="chapter-list" v-show="hideChpaters">
         <li v-for="chapter in chapterList">{{ chapter }}</li>
 
       </ul>
     </fieldset>
 
-    <fieldset>
+    <fieldset p5>
       <legend>{{ BookInfo.name }}</legend>
       <h2 text-light p-y-4 text-3xl>正文</h2>
-      <article text-gray p-10 w="60vw" py-4>{{ bookBody }}</article>
+      <article text-gray p-8 lg-w-220 sm-w-120 xl-w-200 w-xs py-4 id="txt-body">{{ bookBody }}</article>
     </fieldset>
   </div>
 </template>
@@ -42,6 +42,8 @@ import { ref, reactive } from 'vue';
 import type { BookIF, ChapterIF } from '@/types/index'
 
 
+
+const hideChpaters = ref(true)
 
 const BookInfo: BookIF = reactive({
   size: '',
@@ -94,9 +96,21 @@ function getZJ(novel: string) {
 
 }
 
+// 正文分片提取
+function getZW(novel: string) {
+  const 正文Reg = /(第[一二三四五六七八九十]{1,7}章)+(.*?)+(第[一二三四五六七八九十]{1,7}章)/gm
+
+  return novel.match(正文Reg)
+}
+
+
 </script>
 
 <style lang="less">
+#home {
+  min-height: 100vh;
+}
+
 #chapter-list {
   display: flex;
   margin: 0;
@@ -118,11 +132,13 @@ function getZJ(novel: string) {
   text-align: left;
   padding: 5px 10px;
   border-bottom: 1px dotted #3498db80;
+
+  &:hover {
+    color: #2980b9;
+  }
 }
 
-#chapter-list li:hover {
-  color: #2980b9;
-}
+
 
 fieldset {
   display: flex;
@@ -133,10 +149,10 @@ fieldset {
 }
 
 #txt-body {
-  color: #353b48;
-  width: 80%;
-  padding: 15px 30px;
-  line-height: 2em;
+  line-height: 2.4em;
   text-indent: 2em;
+  word-spacing: 2px;
+  white-space: break-spaces; // 空白直接换行显示
+  -moz-only-whitespace: break-spaces;
 }
 </style>
