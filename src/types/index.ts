@@ -1,5 +1,5 @@
 export interface BookIF {
-  bookID: number
+  bookID: number | string
   name: string
   size: string
   author?: string

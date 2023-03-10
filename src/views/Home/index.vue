@@ -39,7 +39,8 @@
 <script setup lang='ts'>
 
 import { ref, reactive } from 'vue';
-import type { BookIF, ChapterIF } from '@/types/index'
+import type { BookIF } from '@/types/index'
+import { getZJ } from '@/utils/book';
 
 
 
@@ -87,21 +88,7 @@ function getBookBody(book: Blob) {
     chapterList = getZJ(bookBody.value) as string[]
   }
 }
-//   正则提取目录列表并返回
-function getZJ(novel: string) {
-  const chapterReg =
-    /(^\s|\n)?(第)([a-zA-Z-0-9零〇一二三四五六气八九十百千万]){1,7}([章节回集卷部])((?! {4}).)((?!\t{1,4}).){0,30}\r?(|\n)/g
-  // @ts-ignore
-  return novel.match(chapterReg)
 
-}
-
-// 正文分片提取
-function getZW(novel: string) {
-  const 正文Reg = /(第[一二三四五六七八九十]{1,7}章)+(.*?)+(第[一二三四五六七八九十]{1,7}章)/gm
-
-  return novel.match(正文Reg)
-}
 
 
 </script>
