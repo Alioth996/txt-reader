@@ -18,19 +18,16 @@ export function getZW(novel: string) {
   return null
 }
 /**
- * @description 章节解析器: 传入小说, 正则提取其所有章节并以字符串数组的形式返回
+ * @description 章节解析器:解析经典小说
  * @param novel string
  * @param chapterRegx RegExp
  * @returns Promise<sting[]>
- * ! bug 该方法适用于现代网文,对于金庸等作品(存在章节标识符不一致等问题)为无效提取
- * ! 例如: 一 花开花落(有效) 二落花流水(有效,但正文中存在干扰项)
+ * // bug 该方法适用于现代网文,对于金庸等作品(存在章节标识符不一致等问题)为无效提取
+ * // 例如: 一 花开花落(有效) 二落花流水(有效,但正文中存在干扰项)
  *
- * ? [^\s|^\t|^\n]?: 匹配以空格 制表符 换行开始并排除
- * ? 第?([零〇一二三四五六七八九十百千万\d]{1,7})([章节卷部回]?)[\t|\s]?: 匹配 第N章
  */
 export function chaptersPaser(novel: string, chapterRegx?: RegExp): Promise<string[]> {
-  const 章节正则 =
-    /[^\s|^\t|^\n]?([零〇一二三四五六七八九十百千万\d]{1,7})[\t|\s]+([章节卷部回]?)[\t|\s]?(.*)[^\n|^\r]/g
+  const 章节正则 = /[^\s^\t^\n]?[零〇一二三四五六七八九十百千万\d]{1,7}[章节卷部回]?[\t|\s]+(.*)[^\n|^\r]/g
   let chapterList: RegExpMatchArray | null
 
   return new Promise<string[]>((reslove, reject) => {
