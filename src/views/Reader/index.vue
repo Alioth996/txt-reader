@@ -41,7 +41,7 @@
 import { ref, reactive } from 'vue';
 import type { BookIF } from '@/types/index'
 import { getZJ } from '@/utils/book';
-import { kBToMB } from '@/utils/kbToMb';
+import { kBToMB } from '@/utils/tools';
 
 // test
 
