@@ -30,3 +30,16 @@ vue3 + ts 开发的本地阅读器
 - 章节与正文同步
 
 ---
+
+### Dev-Environment
+
+```json
+
+  "engines": {
+    "node": ">= v16.15",
+    "pnpm": ">= v7.12",
+    "vite": ">= v3.0.0"
+  }
+
+
+```
