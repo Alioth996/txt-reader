@@ -1,6 +1,6 @@
 import { createWebHashHistory, createRouter, RouteRecordRaw } from 'vue-router'
 
-import Home from '@/views/home/index.vue'
+import Home from '@/views/Home/index.vue'
 
 const routes: RouteRecordRaw[] = [
   {
@@ -16,12 +16,13 @@ const routes: RouteRecordRaw[] = [
     name: '文曲阅读主页'
   },
   {
-    path: '/reader/:bookName',
+    // path: '/reader/:bookName',  主页完成之后需要加上
+    path: '/reader',
     name: '阅读小说',
     meta: {
       title: '文曲阅读-阅读小说'
     },
-    component: () => import('@/views/阅读/index.vue')
+    component: () => import('@/views/Reader/index.vue')
   },
   {
     path: '/:pathMatch(.*)*', // 注意此处 404页面匹配规则和以前不相同，得采用这种配置方式才行

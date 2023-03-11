@@ -5,9 +5,11 @@ specifiers:
   '@vitejs/plugin-vue': ^4.0.0
   '@vitejs/plugin-vue-jsx': ^3.0.0
   less: ^4.1.3
+  shuimo-ui: 0.2.9-1
   typescript: ^4.9.3
   unocss: ^0.50.4
   unplugin-auto-import: ^0.15.1
+  unplugin-vue-components: ^0.24.1
   vite: ^4.1.0
   vitest: ^0.29.2
   vue: ^3.2.45
@@ -23,9 +25,11 @@ devDependencies:
   '@vitejs/plugin-vue': 4.0.0_vite@4.1.4+vue@3.2.47
   '@vitejs/plugin-vue-jsx': 3.0.0_vite@4.1.4+vue@3.2.47
   less: 4.1.3
+  shuimo-ui: 0.2.9-1_vue@3.2.47
   typescript: 4.9.5
   unocss: 0.50.4_vite@4.1.4
   unplugin-auto-import: 0.15.1
+  unplugin-vue-components: 0.24.1_vue@3.2.47
   vite: 4.1.4_zraguv4w5tv76gesmh336plmke
   vitest: 0.29.2_less@4.1.3
   vue-tsc: 1.2.0_typescript@4.9.5
@@ -1925,6 +1929,14 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /shuimo-ui/0.2.9-1_vue@3.2.47:
+    resolution: {integrity: sha512-xkiwQKI80HSWNwstnywXrKZwaCTlZguIctWZHeGxvtdoaG+trXdMdd/HTmYn51QFJWJRrSMHaoe8Bo7bHeFmmg==}
+    peerDependencies:
+      vue: ^3.2.44
+    dependencies:
+      vue: 3.2.47
+    dev: true
+
   /siginfo/2.0.0:
     resolution: {integrity: sha512-ybx0WO1/8bSBLEWXZvEd7gMW3Sn3JFlW3TvX1nREbDLRNQNaeNN8WK0meBwPdAaOI7TtRRRJn/Es1zhrrCHu7g==}
     dev: true
@@ -2142,6 +2154,35 @@ packages:
       unplugin: 1.2.0
     transitivePeerDependencies:
       - rollup
+    dev: true
+
+  /unplugin-vue-components/0.24.1_vue@3.2.47:
+    resolution: {integrity: sha512-T3A8HkZoIE1Cja95xNqolwza0yD5IVlgZZ1PVAGvVCx8xthmjsv38xWRCtHtwl+rvZyL9uif42SRkDGw9aCfMA==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      '@babel/parser': ^7.15.8
+      '@nuxt/kit': ^3.2.2
+      vue: 2 || 3
+    peerDependenciesMeta:
+      '@babel/parser':
+        optional: true
+      '@nuxt/kit':
+        optional: true
+    dependencies:
+      '@antfu/utils': 0.7.2
+      '@rollup/pluginutils': 5.0.2
+      chokidar: 3.5.3
+      debug: 4.3.4
+      fast-glob: 3.2.12
+      local-pkg: 0.4.3
+      magic-string: 0.30.0
+      minimatch: 7.4.2
+      resolve: 1.22.1
+      unplugin: 1.2.0
+      vue: 3.2.47
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
     dev: true
 
   /unplugin/1.2.0:

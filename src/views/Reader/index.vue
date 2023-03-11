@@ -1,7 +1,7 @@
 
 <template>
   <!-- 1rem = 4px -->
-  <div bg-bookbg wh-full id="home" p-5 flex flex-col items-center gap="3xl">
+  <div bg-bookbg wh-full id="reader" p-5 flex flex-col items-center gap="3xl">
     <p>
       <input type="file" name="txt-file" accept=".txt" @change='uploadBook' />
     </p>
@@ -94,7 +94,7 @@ function getBookBody(book: Blob) {
 </script>
 
 <style lang="less">
-#home {
+#reader {
   min-height: 100vh;
 }
 
