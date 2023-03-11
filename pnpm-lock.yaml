@@ -5,7 +5,6 @@ specifiers:
   '@vitejs/plugin-vue': ^4.0.0
   '@vitejs/plugin-vue-jsx': ^3.0.0
   less: ^4.1.3
-  shuimo-ui: 0.2.9-1
   typescript: ^4.9.3
   unocss: ^0.50.4
   unplugin-auto-import: ^0.15.1
@@ -25,7 +24,6 @@ devDependencies:
   '@vitejs/plugin-vue': 4.0.0_vite@4.1.4+vue@3.2.47
   '@vitejs/plugin-vue-jsx': 3.0.0_vite@4.1.4+vue@3.2.47
   less: 4.1.3
-  shuimo-ui: 0.2.9-1_vue@3.2.47
   typescript: 4.9.5
   unocss: 0.50.4_vite@4.1.4
   unplugin-auto-import: 0.15.1
@@ -1927,14 +1925,6 @@ packages:
   /shebang-regex/3.0.0:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
-    dev: true
-
-  /shuimo-ui/0.2.9-1_vue@3.2.47:
-    resolution: {integrity: sha512-xkiwQKI80HSWNwstnywXrKZwaCTlZguIctWZHeGxvtdoaG+trXdMdd/HTmYn51QFJWJRrSMHaoe8Bo7bHeFmmg==}
-    peerDependencies:
-      vue: ^3.2.44
-    dependencies:
-      vue: 3.2.47
     dev: true
 
   /siginfo/2.0.0:
