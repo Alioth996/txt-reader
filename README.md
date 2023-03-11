@@ -13,13 +13,30 @@ vue3 + ts 开发的本地阅读器
 
 ### Todo
 
-- 侧边栏目录(shuimoUI)
+- 目录栏显示章节总数
+
+```ts
+const chapterList: string[] = ref([])
+
+const totalChapter = computed(() => {
+  return chapterList.lenght
+})
+```
+
+- 解析作者
+
+```ts
+const 作者正则 = /作者\W{2,7}/
+```
+
+- 解析特殊作品目录(金庸作品等)
+- 侧边栏目录 UI(shuimoUI)
 - 阅读历史
+- 正文分片
 - 章节与正文锚点联动
-- 以列表形式渲染正文
+- 下拉懒加载正文
 - web worker
 - IndexDB
-- service worker
 
 ---
 
