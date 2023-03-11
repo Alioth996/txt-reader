@@ -7,7 +7,6 @@ specifiers:
   less: ^4.1.3
   typescript: ^4.9.3
   unocss: ^0.50.4
-  unplugin-auto-import: ^0.15.1
   unplugin-vue-components: ^0.24.1
   vite: ^4.1.0
   vitest: ^0.29.2
@@ -26,7 +25,6 @@ devDependencies:
   less: 4.1.3
   typescript: 4.9.5
   unocss: 0.50.4_vite@4.1.4
-  unplugin-auto-import: 0.15.1
   unplugin-vue-components: 0.24.1_vue@3.2.47
   vite: 4.1.4_zraguv4w5tv76gesmh336plmke
   vitest: 0.29.2_less@4.1.3
@@ -1335,11 +1333,6 @@ packages:
     engines: {node: '>=0.8.0'}
     dev: true
 
-  /escape-string-regexp/5.0.0:
-    resolution: {integrity: sha512-/veY75JbMK4j1yjvuUxuVsiS/hr/4iHs9FTT6cgTexxdE0Ly/glccBAkloH/DofkjRbZU3bnoj38mOmhkZ0lHw==}
-    engines: {node: '>=12'}
-    dev: true
-
   /estree-walker/2.0.2:
     resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==}
 
@@ -1900,10 +1893,6 @@ packages:
     dev: true
     optional: true
 
-  /scule/1.0.0:
-    resolution: {integrity: sha512-4AsO/FrViE/iDNEPaAQlb77tf0csuq27EsVpy6ett584EcRTp6pTDLoGWVxCD77y5iU5FauOvhsI4o1APwPoSQ==}
-    dev: true
-
   /semver/5.7.1:
     resolution: {integrity: sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==}
     hasBin: true
@@ -2072,24 +2061,6 @@ packages:
       jiti: 1.17.2
     dev: true
 
-  /unimport/3.0.2:
-    resolution: {integrity: sha512-OQ0hShpcerS1PSsISsyn/NV2dGe5xfdUn4p5nwOodq0iqq5xxYQrTidHqlFGjxIliPDtDJp80OeySzyPTjYHmA==}
-    dependencies:
-      '@rollup/pluginutils': 5.0.2
-      escape-string-regexp: 5.0.0
-      fast-glob: 3.2.12
-      local-pkg: 0.4.3
-      magic-string: 0.30.0
-      mlly: 1.1.1
-      pathe: 1.1.0
-      pkg-types: 1.0.2
-      scule: 1.0.0
-      strip-literal: 1.0.1
-      unplugin: 1.2.0
-    transitivePeerDependencies:
-      - rollup
-    dev: true
-
   /unocss/0.50.4_vite@4.1.4:
     resolution: {integrity: sha512-9offjUEwVlAkR//0sidTyvKkSArRGkDdgSFeW4P4005GWnjmXnbx4amuAeS3Au4o8WoshZCCOi5EYrpO4aLdfg==}
     engines: {node: '>=14'}
@@ -2121,29 +2092,6 @@ packages:
       - rollup
       - supports-color
       - vite
-    dev: true
-
-  /unplugin-auto-import/0.15.1:
-    resolution: {integrity: sha512-xLS+BfVNy00Y3IkqBmEd0IThvjx8kSGIgSuf/1kETttiENK8sHrDA+poKkQxRCPTKYH4yWM6txGQANPTzwpUWQ==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      '@nuxt/kit': ^3.2.2
-      '@vueuse/core': '*'
-    peerDependenciesMeta:
-      '@nuxt/kit':
-        optional: true
-      '@vueuse/core':
-        optional: true
-    dependencies:
-      '@antfu/utils': 0.7.2
-      '@rollup/pluginutils': 5.0.2
-      local-pkg: 0.4.3
-      magic-string: 0.30.0
-      minimatch: 7.4.2
-      unimport: 3.0.2
-      unplugin: 1.2.0
-    transitivePeerDependencies:
-      - rollup
     dev: true
 
   /unplugin-vue-components/0.24.1_vue@3.2.47:

@@ -26,7 +26,7 @@ const totalChapter = computed(() => {
 - 解析作者
 
 ```ts
-const 作者正则 = /作者\W{2,7}/
+const 作者正则 = /作者\W{2,7}/g
 ```
 
 - 解析特殊作品目录(金庸作品等)
