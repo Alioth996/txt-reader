@@ -41,6 +41,7 @@
 import { ref, reactive } from 'vue';
 import type { BookIF } from '@/types/index'
 import { getZJ } from '@/utils/book';
+import { kBToMB } from '@/utils/kbToMb';
 
 // test
 
@@ -58,9 +59,6 @@ const bookBody = ref('')
 let chapterList: string[] = reactive([])
 
 
-function kBToMB(kb: number) {
-  return (kb / (1024 * 1024)).toFixed(2)
-}
 
 
 const uploadBook = (e: Event) => {

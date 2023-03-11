@@ -1,6 +1,6 @@
 // ? 书籍接口
 export interface BookIF {
-  bookID: number | string
+  bookID?: number | string
   name: string
   size: string
   author?: string

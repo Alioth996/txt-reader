@@ -9,6 +9,7 @@ body {
 #app {
   height: auto;
   min-height: 100vh;
+  background: #ece6d9;
 }
 
 * {
