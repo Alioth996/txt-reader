@@ -19,7 +19,7 @@
 <script setup lang='ts'>
 
 import { BookIF } from '@/types';
-import { reactive, toRefs, ref } from 'vue';
+import { reactive } from 'vue';
 import { kBToMB, parseTime, getBookId } from '@/utils/tools'
 
 const novelList: BookIF[] = reactive([])
