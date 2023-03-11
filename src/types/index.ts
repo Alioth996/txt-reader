@@ -1,3 +1,4 @@
+// ? 书籍接口
 export interface BookIF {
   bookID: number | string
   name: string
@@ -6,6 +7,7 @@ export interface BookIF {
   uploadTime: string | number | Date
 }
 
+// ? 章节接口
 export interface ChapterIF {
   chapterID: number
   chapterName: string

@@ -8,7 +8,7 @@ export default function useBook(book: Blob) {
     size: '',
     name: '',
     uploadTime: '',
-    bookID: crypto.randomUUID()
+    bookID: 0
   })
 
   return {

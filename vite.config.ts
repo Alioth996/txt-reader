@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
 import vue from '@vitejs/plugin-vue'
-// import vueJsx from '@vitejs/plugin-vue-jsx'
 import UnoCSS from 'unocss/vite'
 
 import AutoImport from 'unplugin-auto-import/vite'
@@ -10,15 +9,14 @@ import { presetAttributify, presetUno } from 'unocss'
 export default defineConfig({
   plugins: [
     vue(),
-    AutoImport({ cache: true, resolvers: [], imports: ['vue'], dts: './auto-imports.d.ts' }),
-    // vueJsx(),
+    AutoImport({
+      cache: true,
+      resolvers: [], // ui框架自动按需引入
+      imports: ['vue', 'vitest', '@vue/composition-api', 'vue-router'],
+      dts: './auto-imports.d.ts'
+    }),
     UnoCSS({
       presets: [presetAttributify({}), presetUno()],
-
-      // 二维数组写法
-      // shortcuts: [
-      //   ['wh-full','h-full w-full']
-      // ]
       shortcuts: {
         'wh-full': 'w-full h-full',
         'h-vh': 'h-100vh',
@@ -27,7 +25,7 @@ export default defineConfig({
       },
       theme: {
         colors: {
-          bookbg: '#ece6d9',
+          bookbg: '#ece6d9', // 背景色
           light: '#7f8c8d',
           gray: '#353b48',
           dark: '#2c3e50',
@@ -38,16 +36,6 @@ export default defineConfig({
       }
     })
   ],
-
-  // 第二种写法
-  // resolve: {
-  //   alias: [
-  //    {
-  //        find:'@',
-  //        replacement:path.resolve(__dirname,'src'),
-  //    }
-  //  ]
-  // }
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src')
