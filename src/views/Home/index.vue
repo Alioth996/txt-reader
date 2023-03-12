@@ -6,17 +6,9 @@
         </div>
         <div class="book-history">
             <ul class="novel-list" lg:w-full px-sm grid lg:grid-cols-2 grid-cols-1 gap-10>
-                <li class="novel" v-for="book in bookList" v-show="book.bookID" py-sm gap-5 w-full grid grid-cols-6
-                    >
-                    <!--  min-width: 100px;
-                        width: 100px;
-                        box-shadow: 0px 0px 5px 2px #00000050;
-                        letter-spacing: .2rem;
-                        text-overflow: ellipsis;
-                        overflow: hidden;
-                        word-break: break-all;
-                        white-space: nowrap; -->
-                    <div class="book-cover" w-full max-w-28 sm:xl-w-200 truncate drop-shadow-lg py-13 px-sm bg-light b-rd-1 text-white text-sm font-600 text-center col-span-2>
+                <li class="novel" v-for="book in bookList" v-show="book.bookID" py-sm gap-5 w-full grid grid-cols-6>
+                    <div class="book-cover" w-full max-w-28 sm:xl-w-200 truncate drop-shadow-lg py-13 px-sm bg-light b-rd-1
+                        text-white text-sm font-600 text-center col-span-2>
                         {{ book.name }}
                     </div>
 
@@ -55,6 +47,7 @@ const { uploadBook, bookList } = useBook()
     @media screen and (orientation: portrait) {
         width: 100%;
     }
+
     .upload-header {
         position: relative;
         left: 50%;
@@ -101,7 +94,7 @@ const { uploadBook, bookList } = useBook()
     white-space: nowrap;
 }
 
-.novel-list{
+.novel-list {
     @media screen and (orientation: portrait) {
         width: 100%;
     }
