@@ -16,18 +16,14 @@
       </div>
 
     </fieldset>
-
     <fieldset p5>
       <legend>目录</legend>
       <h3 text-light p-y-4 text-2xl v-show="BookInfo.name">&lt;&lt; {{ BookInfo.name }} >> 目录</h3>
-      <p @click='hideChpaters = !hideChpaters' v-show="BookInfo.name" bg-dark text-white p-2 rd cursor-pointer
-        hover="opacity-75 text-active">隐藏目录</p>
-      <ul id="chapter-list" v-show="hideChpaters">
+      <ul id="chapter-list">
         <li v-for="chapter in chapterList" :title="chapter">{{ chapter }}</li>
 
       </ul>
     </fieldset>
-
     <fieldset p5>
       <legend>{{ BookInfo.name }}</legend>
       <h2 text-light p-y-4 text-3xl>正文</h2>
@@ -43,10 +39,6 @@ import type { BookIF } from '@/types/index'
 import { getZJ } from '@/utils/book';
 import { kBToMB } from '@/utils/tools';
 
-// test
-
-const hideChpaters = ref(true)
-
 const BookInfo: BookIF = reactive({
   size: '',
   name: '',
@@ -58,7 +50,8 @@ const bookBody = ref('')
 let chapterList: string[] = reactive([])
 
 
-
+const a = ref(1)
+const b = ref(2)
 
 const uploadBook = (e: Event) => {
   const files = (<HTMLInputElement>e.target).files as FileList;
@@ -77,14 +70,17 @@ const uploadBook = (e: Event) => {
 
 // 获取正文  todo:使用 web-worker开启后台线程解析小说
 function getBookBody(book: Blob) {
+
   const reader = new FileReader()
   reader.readAsText(book)
 
   reader.onload = e => {
     bookBody.value = reader.result as string
     chapterList = getZJ(bookBody.value) as string[]
+
   }
 }
+
 
 
 
