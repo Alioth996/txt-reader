@@ -5,12 +5,18 @@
         </div>
 
         <ul class="novel-list">
-            <li class="novel" v-for="novel in novelList">
-                <p>书名: {{ novel.name }}</p>
-                <p py-1>作者: {{ novel.author ?? '未知' }}</p>
-                <p py-1>更新时间: {{ novel.uploadTime }}</p>
-                <p>大小: {{ novel.size }}</p>
-                {{ novel.bookID }}
+
+            <li class="novel" v-for="book in bookList" v-show="book.bookID" p="5">
+                <div class="book-cover">
+                    {{ book.name }}
+                </div>
+                <div class="book-meta">
+                    <p v-show="book.name">书名: {{ book.name }}</p>
+                    <p py-1 v-show="book.author">作者: {{ book.author }}</p>
+                    <p py-1 v-show="book.uploadTime">更新时间: {{ book.uploadTime }}</p>
+                    <p v-show="book.size">大小: {{ book.size }} MB</p>
+                    <p v-show="book.bookID">id: {{ book.bookID }}</p>
+                </div>
             </li>
         </ul>
     </div>
@@ -18,31 +24,17 @@
 
 <script setup lang='ts'>
 
-import { BookIF } from '@/types';
-import { reactive } from 'vue';
-import { kBToMB, parseTime, getBookId } from '@/utils/tools'
-
-const novelList: BookIF[] = reactive([])
+import { useBook } from '@/hooks/useBook'
 
 
+const { uploadBook, bookList } = useBook()
 
-const uploadBook = (e: Event) => {
-    const fileList = (e.target as HTMLInputElement)?.files as FileList
-    const txtNovel = fileList[0]
-    if (!txtNovel) return
-    const { size, name, lastModified } = txtNovel
 
-    const novel: BookIF = {
-        size: kBToMB(size),
-        name,
-        uploadTime: parseTime(lastModified),
-        bookID: getBookId()
-    }
-
-    novelList.push(novel)
-
-}
 
 </script>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.novel {
+    border-bottom: 1px solid #ccc;
+}
+</style>
