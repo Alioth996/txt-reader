@@ -1,26 +1,35 @@
 <template>
     <div id="home">
-        <div class="upload-header">
+        <div class="upload-header" lg:p-lg>
             <input class="file" type="file" name="txt-file" accept=".txt" @change='uploadBook'>
-            <p class="upload-icon" p-y-3>+</p>
+            <p class="upload-icon" pb-2 text-2xl>+</p>
         </div>
         <div class="book-history">
-            <ul class="novel-list" px-sm>
-                <li class="novel" v-for="book in bookList" v-show="book.bookID" py-sm flex gap-5 w-full sm-justify-start
-                    justify-between>
-                    <div class="book-cover" py-13 px-sm bg-light b-rd-1 text-white text-sm font-600 text-center>
+            <ul class="novel-list" lg:w-full px-sm grid lg:grid-cols-2 grid-cols-1 gap-10>
+                <li class="novel" v-for="book in bookList" v-show="book.bookID" py-sm gap-5 w-full grid grid-cols-6
+                    >
+                    <!--  min-width: 100px;
+                        width: 100px;
+                        box-shadow: 0px 0px 5px 2px #00000050;
+                        letter-spacing: .2rem;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        word-break: break-all;
+                        white-space: nowrap; -->
+                    <div class="book-cover" w-full max-w-28 sm:xl-w-200 truncate drop-shadow-lg py-13 px-sm bg-light b-rd-1 text-white text-sm font-600 text-center col-span-2>
                         {{ book.name }}
                     </div>
-                    <div class="book-meta" min-w-35 text-sm flex="~ col" justify-center gap-1>
+
+                    <div class="book-meta" text-sm justify-center gap-1 col-span-3>
                         <p v-show="book.name" class="single-line" text-dark font-600 text-md> {{ book.name }}</p>
                         <p py-1 v-show="book.author" text-light>{{ book.author }}</p>
                         <p py-1 v-show="book.uploadTime" text-light>{{ book.uploadTime }}</p>
                         <p v-show="book.size" text-light>{{ book.size }} MB</p>
                     </div>
 
-                    <div flex-c>
-                        <button text-md px-sm py-xs b-rd-1 bg-active text-white text-sm font-600 cursor="pointer"
-                            hover="opacity-90 text-bookbg">阅 读
+                    <div flex items-end>
+                        <button w-full h-10 text-md py-2 b-rd-1 bg-active text-white text-sm font-400 cursor="pointer"
+                            hover="opacity-90 text-bookbg">删除
                         </button>
                     </div>
                 </li>
@@ -37,7 +46,7 @@ const { uploadBook, bookList } = useBook()
 
 <style scoped lang="less">
 #home {
-    width: 60%;
+    width: 80%;
     margin: 0 auto;
     padding: 0 10px;
     min-height: 100vh;
@@ -46,7 +55,6 @@ const { uploadBook, bookList } = useBook()
     @media screen and (orientation: portrait) {
         width: 100%;
     }
-
     .upload-header {
         position: relative;
         left: 50%;
@@ -78,35 +86,12 @@ const { uploadBook, bookList } = useBook()
             text-decoration: none;
             cursor: pointer;
         }
-
-        .upload-icon {
-            font-size: 50px;
-        }
-
-        .upload-text {
-            padding-top: 20px;
-        }
     }
 
-    .novel {
-        border-bottom: 1px solid #ccc;
-    }
 }
 
 .novel {
     border-bottom: 1px solid #ccc;
-
-    .book-cover {
-        min-width: 100px;
-        width: 100px;
-        box-shadow: 0px 0px 5px 2px #00000050;
-        letter-spacing: .2rem;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        word-break: break-all;
-        white-space: nowrap;
-
-    }
 }
 
 .single-line {
@@ -114,5 +99,11 @@ const { uploadBook, bookList } = useBook()
     overflow: hidden;
     word-break: break-all;
     white-space: nowrap;
+}
+
+.novel-list{
+    @media screen and (orientation: portrait) {
+        width: 100%;
+    }
 }
 </style>
