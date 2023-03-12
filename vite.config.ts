@@ -1,15 +1,23 @@
 import { defineConfig } from 'vite'
-import { resolve } from 'path'
 import vue from '@vitejs/plugin-vue'
-import UnoCSS from 'unocss/vite'
+import {resolve} from 'path'
 
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+
+import UnoCSS from 'unocss/vite'
 import { presetAttributify, presetUno } from 'unocss'
+
 
 export default defineConfig({
   plugins: [
-    vue(),
+    vue({
+      include: ['vue']
+    }),
+    AutoImport({
+      imports: ['vue', 'vue-router'],
+      dts: resolve(__dirname, './auto-import.d.ts')
+    }),
     // 组件自动按需引入
     Components({
       dirs: resolve(__dirname, 'src/components/'),
