@@ -4,12 +4,14 @@ body {
   width: 100vw;
   height: 100%;
   overflow-x: hidden;
+  min-width: 375px !important;
 }
 
 #app {
   height: auto;
   min-height: 100vh;
   background: #ece6d9;
+  min-width: 375px !important;
 }
 
 * {
