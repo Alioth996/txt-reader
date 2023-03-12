@@ -1,17 +1,29 @@
 import { defineConfig } from 'vite'
-import { resolve } from 'path'
 import vue from '@vitejs/plugin-vue'
-import UnoCSS from 'unocss/vite'
+import path from 'path'
 
+import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+
+import UnoCSS from 'unocss/vite'
 import { presetAttributify, presetUno } from 'unocss'
+
+const pathSrc = path.resolve(__dirname, 'src')
 
 export default defineConfig({
   plugins: [
-    vue(),
+    vue({
+      include: ['/.vue$/', '/.md$/']
+    }),
+    AutoImport({
+      vueTemplate: true,
+      imports: ['vue', 'vue-router'],
+      dts: path.resolve(pathSrc, './auto-import.d.ts')
+    }),
     // 组件自动按需引入
     Components({
       dirs: ['src/components/'],
+      dts: path.resolve(pathSrc, './components.d.ts'),
       extensions: ['vue']
     }),
     UnoCSS({
@@ -37,7 +49,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src')
+      '@': path.resolve(__dirname, 'src')
     },
     extensions: ['.js', '.json', '.ts', '.css', '.scss', '.less']
   }
