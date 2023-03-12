@@ -55,15 +55,14 @@ const BookInfo: BookIF = reactive({
 })
 
 const bookBody = ref('')
-// const chapter = ref<ChapterIF>()
 let chapterList: string[] = reactive([])
 
 
 
 
 const uploadBook = (e: Event) => {
-  // @ts-ignore
-  const txtNovel = e.target.files[0]   // 不知道是什么类型
+  const files = (<HTMLInputElement>e.target).files as FileList;
+  const txtNovel = files?.[0]
   if (!txtNovel) return
 
   const { size, name, lastModified } = txtNovel
