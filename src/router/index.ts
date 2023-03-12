@@ -25,12 +25,21 @@ const routes: RouteRecordRaw[] = [
     component: () => import('@/views/Reader/index.vue')
   },
   {
+    // path: '/reader/:bookName',  主页完成之后需要加上
+    path: '/setting',
+    name: '系统设置',
+    meta: {
+      title: '文曲阅读-系统设置'
+    },
+    component: () => import('@/views/Option/index.vue')
+  },
+  {
     path: '/:pathMatch(.*)*', // 注意此处 404页面匹配规则和以前不相同，得采用这种配置方式才行
     name: '404',
     meta: {
       title: '404-访问路径不存在'
     },
-    component: () => import('../views/404.vue')
+    component: () => import('@/views/404.vue')
   }
 ]
 
