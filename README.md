@@ -29,6 +29,7 @@ const totalChapter = computed(() => {
 const 作者正则 = /作者\W{2,7}/g
 ```
 
+- 主题切换(暗黑/白昼)
 - 解析特殊作品目录(金庸作品等)
 - 侧边栏目录 UI(shuimoUI)
 - 阅读历史
