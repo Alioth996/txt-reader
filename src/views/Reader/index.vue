@@ -9,10 +9,10 @@
       <legend>书籍信息</legend>
       <div text-light p-y-4>
 
-        <p>书名: {{ BookInfo.name }}</p>
-        <p py-1>作者: {{ BookInfo.author ?? '未知' }}</p>
-        <p py-1>更新时间: {{ BookInfo.uploadTime }}</p>
-        <p>大小: {{ BookInfo.size }}</p>
+        <p>{{ BookInfo.name }}</p>
+        <p py-1>{{ BookInfo.author ?? '未知' }}</p>
+        <p py-1> {{ BookInfo.uploadTime }}</p>
+        <p> {{ BookInfo.size }}</p>
       </div>
 
     </fieldset>
@@ -36,7 +36,7 @@
 
 import { ref, reactive } from 'vue';
 import type { BookIF } from '@/types/index'
-import { getZJ } from '@/utils/book';
+import { authorParser, getZJ } from '@/utils/book';
 import { kBToMB } from '@/utils/tools';
 
 const BookInfo: BookIF = reactive({
@@ -50,8 +50,6 @@ const bookBody = ref('')
 let chapterList: string[] = reactive([])
 
 
-const a = ref(1)
-const b = ref(2)
 
 const uploadBook = (e: Event) => {
   const files = (<HTMLInputElement>e.target).files as FileList;
@@ -75,7 +73,14 @@ function getBookBody(book: Blob) {
   reader.readAsText(book)
 
   reader.onload = e => {
-    bookBody.value = reader.result as string
+
+    const fullBook = reader.result as string
+    let author = authorParser(fullBook)
+
+
+    BookInfo.author = author
+
+    bookBody.value = fullBook
     chapterList = getZJ(bookBody.value) as string[]
 
   }
