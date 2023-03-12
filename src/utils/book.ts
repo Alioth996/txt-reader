@@ -1,5 +1,5 @@
 export function authorParser(book: string): string {
-  const authorRegx = /(作者).*/g
+  const authorRegx = /作者\W{2,7}/g
   const author = book.match(authorRegx)?.toString() as string
   return author
 }
