@@ -1,34 +1,38 @@
-
 <template>
-  <div bg-bookbg wh-full id="reader" p-5 flex flex-col items-center gap="3xl">
-    <p>
-      <input type="file" name="txt-file" accept=".txt" @change='uploadBook' />
-    </p>
-    <fieldset p5>
-      <legend>书籍信息</legend>
-      <div text-light p-y-4>
-
-        <p>{{ BookInfo.name }}</p>
-        <p py-1>{{ BookInfo.author ?? '未知' }}</p>
-        <p py-1> {{ BookInfo.uploadTime }}</p>
-        <p> {{ BookInfo.size }}</p>
-      </div>
-
-    </fieldset>
-    <fieldset p5>
+  <p>
+    <input type="file" name="txt-file" accept=".txt" @change='uploadBook' />
+  </p>
+  <div bg-bookbg w-full id="reader" p-5 grid grid-cols-6 gap="3xl">
+    <fieldset h-200 flex-none col-span-1 min-w-24  md:min-w-36 overflow-y-scroll hidden lg:block>
       <legend>目录</legend>
-      <h3 text-light p-y-4 text-2xl v-show="BookInfo.name">&lt;&lt; {{ BookInfo.name }} >> 目录</h3>
-      <ul id="chapter-list">
-        <li v-for="chapter in chapterList" :title="chapter">{{ chapter }}</li>
-
+      <h3 text-light p-y-4 text-sm truncate v-show="BookInfo.name">&lt;&lt; {{ BookInfo.name }} >> 目录</h3>
+      <ul>
+        <li cursor-pointer  hover:text-red text-xs text-light md:text-sm w-full truncate  v-for="chapter in chapterList" :title="chapter">{{ chapter }}</li>
       </ul>
     </fieldset>
-    <fieldset p5>
-      <legend>{{ BookInfo.name }}</legend>
-      <h2 text-light p-y-4 text-3xl>正文</h2>
-      <article text-gray p-8 lg-w-220 sm-w-120 xl-w-200 w-xs py-4 id="txt-body">{{ bookBody }}</article>
-    </fieldset>
+    <div col-span-6 lg:col-span-5  h-full>
+      <fieldset p5>
+        <legend>书籍信息</legend>
+        <div text-light p-y-4>
+          <p>{{ BookInfo.name }}</p>
+          <p py-1>{{ BookInfo.author ?? '未知' }}</p>
+          <p py-1> {{ BookInfo.uploadTime }}</p>
+          <p> {{ BookInfo.size }}</p>
+        </div>
+      </fieldset>
+
+      <fieldset p5 overflow-y-auto h-165 flex-col items-center justify-center>
+        <legend>{{ BookInfo.name }}</legend>
+        <h2 text-light>正文</h2>
+        <div flex justify-center items-center >
+          <article text-gray p-4 xl-w-200 flex items-center px-2 text-base leading-8 id="txt-body">{{ bookBody }}</article>
+        </div>
+
+      </fieldset>
+    </div>
+
   </div>
+
 </template>
 
 <script setup lang='ts'>
@@ -91,47 +95,6 @@ function getBookBody(book: Blob) {
 </script>
 
 <style lang="less">
-#reader {
-  min-height: 100vh;
-}
-
-#chapter-list {
-  display: flex;
-  margin: 0;
-  gap: 10px;
-  width: 100%;
-  padding: 16px;
-  flex-wrap: wrap;
-  list-style: none;
-  align-items: center;
-  justify-content: center;
-}
-
-#chapter-list li {
-  /* flex时li的icon会被隐藏 */
-  flex: 1;
-  color: #2c3e50;
-  cursor: pointer;
-  min-width: 400px;
-  text-align: left;
-  padding: 5px 10px;
-  border-bottom: 1px dotted #3498db80;
-
-  &:hover {
-    color: #2980b9;
-  }
-}
-
-
-
-fieldset {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
 #txt-body {
   line-height: 2.4em;
   text-indent: 2em;
