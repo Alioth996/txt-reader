@@ -8,9 +8,9 @@
         <div class="book-history">
             <ul class="novel-list" lg:w-full px-sm grid lg:grid-cols-2 grid-cols-1 gap-10>
                 <li class="novel" v-for="book in state.bookList" v-show="book.bookID" py-sm gap-5 w-full grid grid-cols-6>
-                    <div class="book-cover" @click="toReaderBook(<string>book.bookID, book.name)" hover-opacity-80
-                        cursor-pointer w-full max-w-28 sm:xl-w-200 truncate drop-shadow-lg py-13 px-sm bg-light b-rd-1
-                        text-white text-sm font-600 text-center col-span-2>
+                    <div class="book-cover" @click="toReaderBook(<string>book.bookID, book.name)" opacity-90
+                        hover-opacity-100 cursor-pointer w-full max-w-28 sm:xl-w-200 truncate drop-shadow-lg py-13 px-sm
+                        bg-light b-rd-1 text-white text-sm font-600 text-center col-span-2>
                         {{ book.name }}
                     </div>
 
