@@ -41,6 +41,9 @@ import { useRouter } from 'vue-router';
 import deleteIcon from '@/assets/delete-red.svg'
 import { useBook } from '@/hooks/useBook'
 
+
+
+
 const router = useRouter()
 
 const { uploadBook, bookList, deleteBook } = useBook()

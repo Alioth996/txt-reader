@@ -1,10 +1,9 @@
 import { reactive } from 'vue'
 import type { BookIF } from '@/types/index'
-import { authorParser } from '@/utils/book'
 import { getBookId, kBToMB, parseTime } from '@/utils/tools'
 
 export const useBook = () => {
-  const bookList: BookIF[] = reactive([])
+  let bookList: BookIF[] = reactive([])
 
   let novel: BookIF = {
     size: '',
@@ -30,6 +29,7 @@ export const useBook = () => {
         break
       case true:
         bookList.unshift(book)
+        localStorage.setItem(book.bookID, book)
         console.log(`--系统提示--: 小说: ${book.name} 已导入`)
     }
   }
