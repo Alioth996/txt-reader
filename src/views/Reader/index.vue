@@ -34,9 +34,25 @@
 <script setup lang='ts'>
 
 import { ref, reactive } from 'vue';
+import { useRoute } from 'vue-router';
 import type { BookIF } from '@/types/index'
 import { authorParser, getZJ } from '@/utils/book';
 import { kBToMB } from '@/utils/tools';
+
+
+const route = useRoute()
+
+
+onMounted(() => {
+
+  const { bookName } = route.params
+  document.title = `${bookName} - 文曲阅读`
+})
+
+
+
+
+
 
 const BookInfo: BookIF = reactive({
   size: '',
