@@ -29,7 +29,7 @@ export const useBook = () => {
         break
       case true:
         bookList.unshift(book)
-        localStorage.setItem(book.bookID, book)
+        localStorage.setItem(book.bookID, JSON.stringify(book))
         console.log(`--系统提示--: 小说: ${book.name} 已导入`)
     }
   }
