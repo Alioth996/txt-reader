@@ -12,7 +12,7 @@
                         {{ book.name }}
                     </div>
 
-                    <div class="book-meta" text-sm justify-center gap-1 col-span-3>
+                    <div class="book-meta" text-sm flex="~ col" justify-center gap-1 col-span-3>
                         <p v-show="book.name" class="single-line" text-dark font-600 text-md> {{ book.name }}</p>
                         <p py-1 v-show="book.author" text-light>{{ book.author }}</p>
                         <p py-1 v-show="book.uploadTime" text-light>{{ book.uploadTime }}</p>
@@ -20,8 +20,10 @@
                     </div>
 
                     <div flex items-end>
-                        <button w-full h-10 text-md py-2 b-rd-1 bg-active text-white text-sm font-400 cursor="pointer"
-                            hover="opacity-90 text-bookbg">删除
+                        <button w-full h-10 text-md py-2 b-rd-1 flex-c bg-grayLight text-white text-sm font-400
+                            cursor="pointer" hover="opacity-90 text-bookbg" class="delete-btn" hover:bg-gray
+                            @click="removeBook(book.bookID as string, book.name)">
+                            <img :src="deleteIcon" alt="del" w-6 h-6>
                         </button>
                     </div>
                 </li>
@@ -32,8 +34,26 @@
 </template>
 
 <script setup lang='ts'>
+
+import deleteIcon from '@/assets/delete-red.svg'
+
 import { useBook } from '@/hooks/useBook'
-const { uploadBook, bookList } = useBook()
+const { uploadBook, bookList, deleteBook } = useBook()
+
+/**
+ *  todo 删除书籍之前应该先询问用户是否删除
+ *  todo 确认框有点丑 无伤大雅
+ */
+
+const removeBook = (bookId: string, bookName: string) => {
+    if (!bookId || !bookName) return
+
+    if (!confirm(`删除小说 ${bookName} ?`)) return
+
+    deleteBook(bookId)
+
+}
+
 </script>
 
 <style scoped lang="less">

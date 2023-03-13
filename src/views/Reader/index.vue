@@ -1,6 +1,5 @@
 
 <template>
-  <!-- 1rem = 4px -->
   <div bg-bookbg wh-full id="reader" p-5 flex flex-col items-center gap="3xl">
     <p>
       <input type="file" name="txt-file" accept=".txt" @change='uploadBook' />
@@ -43,7 +42,7 @@ const BookInfo: BookIF = reactive({
   size: '',
   name: '',
   uploadTime: '',
-  bookID: 0
+  bookID: ''
 })
 
 const bookBody = ref('')
