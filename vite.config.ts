@@ -35,11 +35,13 @@ export default defineConfig({
         colors: {
           bookbg: '#ece6d9', // 背景色
           light: '#7f8c8d',
+          grayLight: '#ccc',
           gray: '#353b48',
           dark: '#2c3e50',
           active: '#2980b9',
           border: '#3498db80',
-          white: '#dfe6e9'
+          white: '#dfe6e9',
+          error: '#e74c3c'
         }
       }
     })
