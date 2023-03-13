@@ -1,7 +1,5 @@
 <template>
-    <div id="setting">
-
-        设置
+    <div>
     </div>
 </template>
 

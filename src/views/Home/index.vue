@@ -7,7 +7,7 @@
 
         <div class="book-history">
             <ul class="novel-list" lg:w-full px-sm grid lg:grid-cols-2 grid-cols-1 gap-10>
-                <li class="novel" v-for="book in bookList" v-show="book.bookID" py-sm gap-5 w-full grid grid-cols-6>
+                <li class="novel" v-for="book in state.bookList" v-show="book.bookID" py-sm gap-5 w-full grid grid-cols-6>
                     <div class="book-cover" @click="toReaderBook(<string>book.bookID, book.name)" hover-opacity-80
                         cursor-pointer w-full max-w-28 sm:xl-w-200 truncate drop-shadow-lg py-13 px-sm bg-light b-rd-1
                         text-white text-sm font-600 text-center col-span-2>
@@ -41,13 +41,20 @@ import { useRouter } from 'vue-router';
 import deleteIcon from '@/assets/delete-red.svg'
 import { useBook } from '@/hooks/useBook'
 
-
-
-
 const router = useRouter()
 
-const { uploadBook, bookList, deleteBook } = useBook()
+const { uploadBook, state, deleteBook } = useBook()
 
+onMounted(() => {
+    const list = <Array<any>>JSON.parse(localStorage.getItem('list') as string)
+    if (list != null) {
+        state.bookList = list
+    }
+
+
+
+
+})
 /**
  *  todo 删除书籍之前应该先询问用户是否删除
  *  todo 确认框有点丑 无伤大雅
