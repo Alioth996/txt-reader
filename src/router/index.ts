@@ -10,24 +10,22 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/home',
     component: Home,
+    name: 'Home',
     meta: {
       title: '文曲阅读_导入本地小说_支持离线阅读 支持txt格式'
-    },
-    name: '文曲阅读主页'
+    }
   },
   {
-    // path: '/reader/:bookName',  主页完成之后需要加上
-    path: '/reader',
-    name: '阅读小说',
+    path: '/reader/:bookName/:bookId',
+    name: 'reader',
     meta: {
       title: '文曲阅读-阅读小说'
     },
     component: () => import('@/views/Reader/index.vue')
   },
   {
-    // path: '/reader/:bookName',  主页完成之后需要加上
     path: '/setting',
-    name: '系统设置',
+    name: 'sys-setting',
     meta: {
       title: '文曲阅读-系统设置'
     },

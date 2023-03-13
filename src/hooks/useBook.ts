@@ -1,4 +1,4 @@
-import { ref, reactive } from 'vue'
+import { reactive } from 'vue'
 import type { BookIF } from '@/types/index'
 import { authorParser } from '@/utils/book'
 import { getBookId, kBToMB, parseTime } from '@/utils/tools'
@@ -15,28 +15,26 @@ export const useBook = () => {
 
   // 查找小说是否存在
   const existBook = (bookName: string): Boolean => {
-    // isBook === -1 表示小说不存在
+    // isBook === -1 表示小说不存在 return ture
     const isBook = bookList.findIndex(x => x.name == bookName)
     return isBook === -1
   }
 
   const addBook = (book: BookIF) => {
-    // isBook 等于 -1表示该小说不存在 可以添加
-    const isBook = bookList.findIndex(x => x.name == book.name)
+    const isBook = existBook(book.name)
 
-    // switch-case 高级用法 匹配运算符
-    switch (true) {
-      case isBook != -1:
+    switch (isBook) {
+      case false:
         // !bug: 连续选择导入两次相同文件不触发
         console.log(`--系统提示--: 小说: ${book.name} 已存在`)
         break
-      case isBook == -1:
+      case true:
         bookList.unshift(book)
         console.log(`--系统提示--: 小说: ${book.name} 已导入`)
     }
   }
 
-  const deleteBook = async (bookID: string) => {
+  const deleteBook = (bookID: string) => {
     const bookIndex = bookList.findIndex(x => x.bookID == bookID)
 
     if (bookIndex == -1) {
