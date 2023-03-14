@@ -1,8 +1,15 @@
 <template>
+  <!-- todo 为底部tabbar -->
   <HeaderNav></HeaderNav>
+
+  <!-- todo 该上传为测试目录用, -->
   <p>
     <input type="file" name="txt-file" accept=".txt" @change='uploadBook' />
   </p>
+
+  <!-- todo 该上传为测试目录用,后期删除 -->
+
+
   <div v-show="nodelist" class="relative z-10" role="dialog" aria-modal="true">
     <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
     <div class="fixed inset-0 overflow-hidden">
@@ -35,7 +42,8 @@
     </div>
     <div class="mx-auto max-w-3xl text-base leading-7 text-gray-700 lg:col-span-4 xl:col-span-5">
       <div class="lg:hidden">
-        <svg @click="nodelist = !nodelist" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <svg @click="nodelist = !nodelist" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+          stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 4.5l7.5 7.5-7.5 7.5m-6-15l7.5 7.5-7.5 7.5" />
         </svg>
       </div>
@@ -101,7 +109,7 @@ const route = useRoute()
 
 
 // 根据id查找小说信息
-const findBookInDb = () => {
+const findBookByIdFormDB = (id: string) => {
 
 }
 
@@ -110,9 +118,6 @@ onMounted(() => {
   const { bookName, bookId } = route.params
   document.title = `${bookName} - 文曲阅读`
 })
-
-
-
 
 
 
