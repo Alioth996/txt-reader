@@ -9,7 +9,7 @@ import './styles/reset'
 import './styles/global'
 import { RouteRecordRaw } from 'vue-router'
 
-// 外部引入build报错:location is not defined
+// 外部引入routes,` build会报错:location is not defined
 // import { routes } from './router'
 
 import Home from '@/views/Home/index.vue'
@@ -54,12 +54,7 @@ const routes: RouteRecordRaw[] = [
 ]
 
 export const createApp = ViteSSG(
-  // the root component
   App,
-  // vue-router options
   { routes, base: import.meta.env.BASE_URL },
-  // function to have custom setups
-  ({ app, router, routes, isClient, initialState }) => {
-    // install plugins etc.
-  }
+  ({ app, router, routes, isClient, initialState }) => {}
 )
