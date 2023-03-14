@@ -4,11 +4,12 @@ import { getBookId, kBToMB, parseTime } from '@/utils/tools'
 
 let timer: any
 
-export const useBook = () => {
-  const state = reactive<{ bookList: BookIF[] }>({
-    bookList: []
-  })
+// 全局共享变量,不需要每次都初始化
+const state = reactive<{ bookList: BookIF[] }>({
+  bookList: []
+})
 
+export const useBook = () => {
   let novel: BookIF = {
     size: '',
     name: '',
@@ -45,6 +46,7 @@ export const useBook = () => {
 
   const deleteBook = (bookID: string) => {
     const bookIndex = state.bookList.findIndex(x => x.bookID == bookID)
+
     if (bookIndex == -1) {
       console.error(`sys-error: 小说不存在!!`)
       return
