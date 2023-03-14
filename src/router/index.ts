@@ -25,7 +25,7 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/setting',
-    name: 'sys-setting',
+    name: 'Setting',
     meta: {
       title: '文曲阅读-系统设置'
     },
