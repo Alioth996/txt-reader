@@ -40,7 +40,7 @@ export const useBook = () => {
           localStorage.setItem('list', JSON.stringify(state.bookList))
         }, 2 * 1000)
 
-        console.log(`--系统提示--: 小说: ${book.name} 已导入`)
+        console.log(`--系统提示--: 小说 ${book.name} 已导入`)
     }
   }
 
@@ -53,7 +53,7 @@ export const useBook = () => {
     }
     state.bookList.splice(bookIndex, 1)
     localStorage.setItem('list', JSON.stringify(state.bookList))
-    console.log(`sys-小说: ${bookID} 已删除!`)
+    console.log(`--系统提示--: 小说 ${bookID} 已删除!`)
   }
 
   const uploadBook = (e: Event) => {
