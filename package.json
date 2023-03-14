@@ -10,20 +10,22 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vite-ssg build",
     "preview": "vite preview",
     "test": "vitest --watch",
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "vue": "^3.2.45",
-    "vue-router": "^4.1.6"
+    "vue": "^3.2.45"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.191",
     "@types/node": "^18.15.0",
     "@vitejs/plugin-vue": "^4.0.0",
+    "@vueuse/head": "^1.1.23",
     "autoprefixer": "^10.4.14",
     "less": "^4.1.3",
+    "lodash": "^4.17.21",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.2.7",
     "typescript": "^4.9.3",
@@ -31,7 +33,9 @@
     "unplugin-auto-import": "^0.15.1",
     "unplugin-vue-components": "^0.24.1",
     "vite": "^4.1.0",
+    "vite-ssg": "^0.22.1",
     "vitest": "^0.29.2",
+    "vue-router": "^4.1.6",
     "vue-tsc": "^1.0.24"
   },
   "engines": {

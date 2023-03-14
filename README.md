@@ -8,6 +8,7 @@ vue3 + ts 开发的本地阅读器
 - 小说信息(作者, 书名, 大小等)
 - 章节列表
 - 正文阅读(长屏阅读)
+- SSG
 
 ---
 
@@ -39,6 +40,7 @@ const 作者正则 = /作者\W{2,7}/
 - 下拉懒加载正文
 - web worker
 - IndexDB
+- PWA
 
 ---
 
@@ -62,3 +64,29 @@ const 作者正则 = /作者\W{2,7}/
 
 
 ```
+---
+
+### How to work it
+
+**``SSG`` MODE**:
+  ```bash
+  pnpm i
+
+  #please build first!!(important)
+  pnpm run build
+
+  #then view ssg page
+  pnpm run preview
+
+  ```
+
+**``VUE-SFC`` MODE**
+
+```bash
+
+pnpm i
+
+pnpm run dev
+
+```
+
