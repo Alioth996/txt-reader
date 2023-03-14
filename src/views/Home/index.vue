@@ -14,7 +14,7 @@
   </HeaderNav>
   <div id="home">
     <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-      <li v-for="book in bookList" :key="book.bookID" class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
+      <li v-for="book in state.bookList" :key="book.bookID" class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
         <div class="flex flex-1 flex-col p-8">
           <img class="mx-auto h-32 w-32 flex-shrink-0 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60" alt="">
           <h3 class="mt-6 text-sm font-medium text-gray-900">{{ book.name }}</h3>
@@ -31,13 +31,13 @@
         </div>
         <div>
           <div class="-mt-px flex divide-x divide-gray-200">
-            <div class="flex w-0 flex-1">
-              <a href="mailto:janecooper@example.com" class="relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-gray-900">
+            <div @click="toReaderBook(<string>book.bookID, book.name)" class="flex w-0 flex-1">
+              <div class="relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-gray-900">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.863 4.487zm0 0L19.5 7.125" />
                 </svg>
-                修改
-              </a>
+                查看
+              </div>
             </div>
             <div class="-ml-px flex w-0 flex-1">
               <a @click="removeBook(book.bookID as string, book.name)" href="tel:+1-202-555-0170" class="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-gray-900">
@@ -58,24 +58,41 @@
 </template>
 
 <script setup lang='ts'>
+
 import HeaderNav from '@/compoments/hearder.vue'
-
+import { useRouter } from 'vue-router';
 import deleteIcon from '@/assets/delete-red.svg'
-
 import { useBook } from '@/hooks/useBook'
-const { uploadBook, bookList, deleteBook } = useBook()
 
-/**
- *  todo 删除书籍之前应该先询问用户是否删除
- *  todo 确认框有点丑 无伤大雅
- */
+const router = useRouter()
 
+const { uploadBook, state, deleteBook } = useBook()
+
+onMounted(() => {
+    const list = <Array<any>>JSON.parse(localStorage.getItem('list') as string)
+    if (list != null) {
+        state.bookList = list
+    }
+
+
+
+
+})
 const removeBook = (bookId: string, bookName: string) => {
-  if (!bookId || !bookName) return
-
-  if (!confirm(`删除小说 ${bookName} ?`)) return
+    if (!confirm(`删除小说 ${bookName} ?`)) return
 
   deleteBook(bookId)
+
+}
+
+
+const toReaderBook = (bookId: string, bookName: string) => {
+    router.push({
+        name: 'reader',
+        params: {
+            bookName, bookId
+        }
+    })
 
 }
 
