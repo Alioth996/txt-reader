@@ -26,13 +26,7 @@ onBeforeMount(() => {
   const list = <Array<any>>JSON.parse(localStorage.getItem('list') as string)
   if (list != null) {
     state.bookList = list
-
-    console.log(state.bookList);
-
   }
-
-
-
 })
 
 
