@@ -55,13 +55,7 @@ onMounted(() => {
 
 
 })
-/**
- *  todo 删除书籍之前应该先询问用户是否删除
- *  todo 确认框有点丑 无伤大雅
- */
 const removeBook = (bookId: string, bookName: string) => {
-    if (!bookId || !bookName) return
-
     if (!confirm(`删除小说 ${bookName} ?`)) return
 
     deleteBook(bookId)
