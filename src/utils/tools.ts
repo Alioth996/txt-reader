@@ -1,3 +1,5 @@
+import uniqueId from 'lodash/uniqueId'
+
 export function kBToMB(kb: number) {
   return (kb / (1024 * 1024)).toFixed(2)
 }
@@ -29,30 +31,32 @@ export function parseTime(time: string | number | Date): string {
  */
 
 export function getBookId() {
-  if (typeof crypto === 'object') {
-    if (typeof crypto.randomUUID === 'function') {
-      return crypto.randomUUID()
-    }
-    if (typeof crypto.getRandomValues === 'function' && typeof Uint8Array === 'function') {
-      const callback = (c: any) => {
-        const num = Number(c)
-        return (num ^ (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (num / 4)))).toString(16)
-      }
-      return `[1e7] + -1e3 + -4e3 + -8e3 + -1e11`.replace(/[018]/g, callback)
-    }
-  }
-  let timestamp = new Date().getTime()
-  let perforNow = (typeof performance !== 'undefined' && performance.now && performance.now() * 1000) || 0
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
-    let random = Math.random() * 16
-    if (timestamp > 0) {
-      random = (timestamp + random) % 16 | 0
-      timestamp = Math.floor(timestamp / 16)
-    } else {
-      random = (perforNow + random) % 16 | 0
-      perforNow = Math.floor(perforNow / 16)
-    }
-    return (c === 'x' ? random : (random & 0x3) | 0x8).toString(16)
-  })
-}
+  return uniqueId()
 
+  // uuid 过长导致 vite-ssg 匹配路由失败,而且uuid不适合用在小说等物件上
+  // if (typeof crypto === 'object') {
+  //   if (typeof crypto.randomUUID === 'function') {
+  //     return crypto.randomUUID()
+  //   }
+  //   if (typeof crypto.getRandomValues === 'function' && typeof Uint8Array === 'function') {
+  //     const callback = (c: any) => {
+  //       const num = Number(c)
+  //       return (num ^ (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (num / 4)))).toString(16)
+  //     }
+  //     return `[1e7] + -1e3 + -4e3 + -8e3 + -1e11`.replace(/[018]/g, callback)
+  //   }
+  // }
+  // let timestamp = new Date().getTime()
+  // let perforNow = (typeof performance !== 'undefined' && performance.now && performance.now() * 1000) || 0
+  // return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+  //   let random = Math.random() * 16
+  //   if (timestamp > 0) {
+  //     random = (timestamp + random) % 16 | 0
+  //     timestamp = Math.floor(timestamp / 16)
+  //   } else {
+  //     random = (perforNow + random) % 16 | 0
+  //     perforNow = Math.floor(perforNow / 16)
+  //   }
+  //   return (c === 'x' ? random : (random & 0x3) | 0x8).toString(16)
+  // })
+}
