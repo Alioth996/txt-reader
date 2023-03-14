@@ -59,7 +59,7 @@
 
 <script setup lang='ts'>
 
-import HeaderNav from '@/compoments/hearder.vue'
+import HeaderNav from '@/components/hearder.vue'
 import { useRouter } from 'vue-router';
 import deleteIcon from '@/assets/delete-red.svg'
 import { useBook } from '@/hooks/useBook'

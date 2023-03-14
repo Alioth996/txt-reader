@@ -93,8 +93,8 @@ import { useRoute } from 'vue-router';
 import type { BookIF } from '@/types/index'
 import { authorParser, getZJ } from '@/utils/book';
 import { kBToMB } from '@/utils/tools';
-import HeaderNav from '@/compoments/hearder.vue'
-import NodeLists from '@/compoments/nodeList.vue'
+import HeaderNav from '@/components/hearder.vue'
+import NodeLists from '@/components/nodeList.vue'
 
 
 const route = useRoute()
