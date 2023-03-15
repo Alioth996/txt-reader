@@ -20,7 +20,7 @@ export default defineConfig({
       dts: resolve(__dirname, 'src/components.d.ts')
     }),
     AutoImport({
-      imports: ['vue', 'vue-router'],
+      imports: ['vue', 'vue-router', '@vueuse/head'],
       dts: resolve(__dirname, 'src/auto-import.d.ts')
     }),
     UnoCSS({
