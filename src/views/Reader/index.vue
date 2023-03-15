@@ -103,7 +103,6 @@ import { authorParser, getZJ } from '@/utils/book';
 import { kBToMB } from '@/utils/tools';
 import HeaderNav from '@/components/hearder.vue'
 import NodeLists from '@/components/nodeList.vue'
-import { useHead } from '@vueuse/head'
 
 
 const route = useRoute()

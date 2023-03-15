@@ -9,12 +9,9 @@
 </template>
 
 <script setup lang="ts">
-import { useHead } from '@vueuse/head';
 
-onMounted(() => {
-    useHead({
-        title: '404 - Not-Found'
-    })
+useHead({
+    title: '404 - Not-Found'
 })
 
 
