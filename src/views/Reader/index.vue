@@ -97,26 +97,28 @@
 <script setup lang='ts'>
 
 import { ref, reactive } from 'vue';
-import { useRoute } from 'vue-router';
 import type { BookIF } from '@/types/index'
 import { authorParser, getZJ } from '@/utils/book';
 import { kBToMB } from '@/utils/tools';
 import HeaderNav from '@/components/hearder.vue'
 import NodeLists from '@/components/nodeList.vue'
-
+import { useRoute } from 'vue-router';
+import { useHead } from '@vueuse/head'
 
 const route = useRoute()
-
 
 // 根据id查找小说信息
 const findBookByIdFormDB = (id: string) => {
 
 }
 
+onBeforeMount(() => {
+  const bookname = route.params.bookName as string
 
-onMounted(() => {
-  const { bookName, bookId } = route.params
-  document.title = `${bookName} - 文曲阅读`
+  useHead({
+    title: bookname + '-文曲阅读',
+
+  })
 })
 
 
