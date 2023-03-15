@@ -1,8 +1,8 @@
 <template>
     <li class="novel" v-show="book.bookID" py-sm gap-5 w-full grid grid-cols-6>
-        <div class="book-cover" @click="toReaderBook(<string>book.bookID)" opacity-90 hover-opacity-100 cursor-pointer
-            w-full max-w-28 sm:xl-w-200 truncate drop-shadow-lg py-13 px-sm bg-light b-rd-1 text-white text-sm font-600
-            text-center col-span-2>
+        <div class="book-cover" @click="toReaderBook(<string>book.bookID, book.name)" opacity-90 hover-opacity-100
+            cursor-pointer w-full max-w-28 sm:xl-w-200 truncate drop-shadow-lg py-13 px-sm bg-light b-rd-1 text-white
+            text-sm font-600 text-center col-span-2>
             {{ book.name }}
         </div>
 
@@ -42,11 +42,12 @@ defineProps({
 
 
 const router = useRouter()
-const toReaderBook = (bookId: string) => {
+const toReaderBook = (bookId: string, bookName: string) => {
     router.push({
         name: 'Reader',
         params: {
-            bookId
+            bookId,
+            bookName
         }
     })
 }
@@ -57,8 +58,4 @@ const removeBook = (bookId: string, bookName: string) => {
     deleteBook(bookId)
 
 }
-
-
 </script>
-
-<style scoped></style>
