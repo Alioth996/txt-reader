@@ -12,7 +12,7 @@ export default defineConfig({
   plugins: [
     vue(),
     AutoImport({
-      imports: ['vue', 'vue-router'],
+      imports: ['vue', 'vue-router', 'vitest'],
       dts: resolve(__dirname, 'src/auto-import.d.ts')
     }),
     // 组件自动按需引入
