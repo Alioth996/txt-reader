@@ -33,11 +33,14 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/:pathMatch(.*)*', // 注意此处 404页面匹配规则和以前不相同，得采用这种配置方式才行
-    name: '404',
+    redirect: '/not-found'
+  },
+  {
+    path: '/not-found',
     meta: {
       title: '404-访问路径不存在'
     },
-    component: () => import('@/views/404.vue')
+    component: () => import('@/views/NotFound.vue')
   }
 ]
 

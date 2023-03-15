@@ -115,32 +115,10 @@ const findBookByIdFormDB = (id: string) => {
 }
 
 
-// 使用 useHead 动态tilte和SEO配置
 onBeforeMount(() => {
   const readerTitle = route.params.bookName as string + '-文曲阅读'
   useHead({
     title: readerTitle,
-
-    // 页面元信息配置, SEO重点
-    meta: [
-      {
-        name: 'description',
-        content: '文曲阅读是一个本地阅读器,主要功能为导入txt小说,解析小说的目录与正文,让用户可以已离线的模式观看本地小说',
-      },
-      {
-        name: 'keywords',
-        content: '文曲阅读,小说,小说网,离线小说,本地小说,小说离线阅读, 小说导入阅读, 阅读,阅读器,离线阅读器,vue3阅读器,vue3小说阅读器'
-      },
-
-      {
-        property: 'og:url',
-        content: 'txt.akexc.com'
-      },
-      {
-        property: 'og:type',
-        content: 'reader'
-      }
-    ],
   })
 })
 
