@@ -1,4 +1,3 @@
-// import { createApp } from 'vue'
 import App from './App.vue'
 
 import { ViteSSG } from 'vite-ssg'
@@ -28,7 +27,7 @@ const routes: RouteRecordRaw[] = [
     component: Home
   },
   {
-    path: '/reader/book/:bookId',
+    path: '/reader/book/:bookName/:bookId',
     name: 'Reader',
     meta: {
       title: '文曲阅读-阅读小说'
