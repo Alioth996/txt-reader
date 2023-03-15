@@ -1,4 +1,4 @@
-import { createWebHashHistory, createRouter, RouteRecordRaw } from 'vue-router'
+import { RouteRecordRaw } from 'vue-router'
 
 import Home from '@/views/Home/index.vue'
 
@@ -41,13 +41,4 @@ const routes: RouteRecordRaw[] = [
   }
 ]
 
-const router = createRouter({
-  history: createWebHashHistory(),
-  routes
-})
-
-router.beforeEach((to, from) => {
-  document.title = to.meta.title as string
-})
-
-export default router
+export default routes

@@ -1,4 +1,3 @@
-// import { createApp } from 'vue'
 import App from './App.vue'
 
 import { ViteSSG } from 'vite-ssg'
@@ -9,8 +8,8 @@ import './styles/reset'
 import './styles/global'
 import { RouteRecordRaw } from 'vue-router'
 
-// 外部引入routes,` build会报错:location is not defined
-// import { routes } from './router'
+// 外部引入routes,` build会报错:location is not defined,跳转会出现匹配不到路由
+// import routes from './router'
 
 import Home from '@/views/Home/index.vue'
 
@@ -28,7 +27,7 @@ const routes: RouteRecordRaw[] = [
     component: Home
   },
   {
-    path: '/reader/book/:bookId',
+    path: '/reader/book/:bookId/:bookName',
     name: 'Reader',
     meta: {
       title: '文曲阅读-阅读小说'
