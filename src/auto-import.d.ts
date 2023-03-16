@@ -67,17 +67,3 @@ declare global {
   // @ts-ignore
   export type { Component, ComponentPublicInstance, ComputedRef, InjectionKey, PropType, Ref, VNode } from 'vue'
 }
-uter: typeof import('vue-router')['useRouter']
-  const useSlots: typeof import('vue')['useSlots']
-  const vi: typeof import('vitest')['vi']
-  const vitest: typeof import('vitest')['vitest']
-  const watch: typeof import('vue')['watch']
-  const watchEffect: typeof import('vue')['watchEffect']
-  const watchPostEffect: typeof import('vue')['watchPostEffect']
-  const watchSyncEffect: typeof import('vue')['watchSyncEffect']
-}
-// for type re-export
-declare global {
-  // @ts-ignore
-  export type { Component, ComponentPublicInstance, ComputedRef, InjectionKey, PropType, Ref, VNode } from 'vue'
-}
