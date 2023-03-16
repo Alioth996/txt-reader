@@ -65,8 +65,6 @@ export const useBook = () => {
     // todo web worker解析目录与正文
     // 开启一个后台线程
 
-    useBookWorker(txtNovel)
-
     const { size, name, lastModified } = txtNovel
     novel = {
       size: kBToMB(size),
@@ -74,6 +72,8 @@ export const useBook = () => {
       uploadTime: parseTime(lastModified),
       bookID: getBookId()
     }
+
+    useBookWorker(txtNovel, novel.bookID)
 
     addBook(novel)
   }

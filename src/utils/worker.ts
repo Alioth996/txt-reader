@@ -1,13 +1,12 @@
+export {}
+
 /**
- * thread: bookWorker
- * @desc 解析小说目录, 正文的线程
- * 1. 连接 IndexedDB数据库
- * 2. FileReader 读取正文
- * 3. 存入数据库
- * 4.
+ * @description 传入Blob或File文件,解析正文并返回
+ * @param book Blob/File    用户上传的txt文件(Blob/File文件)
+ * @returns Promise<string> 小说正文
  */
 
-export {}
+import { addBook } from './db'
 
 const readBook = (book: Blob): Promise<string> => {
   return new Promise((resolve, reject) => {
@@ -23,9 +22,10 @@ const readBook = (book: Blob): Promise<string> => {
   })
 }
 
-self.addEventListener('message', e => {
-  const book = e.data
-  console.log(book)
+self.addEventListener('message', async e => {
+  const { book, id } = e.data
 
-  readBook(book).then(res => console.log(res))
+  readBook(book).then(content => {
+    addBook(content, id)
+  })
 })
