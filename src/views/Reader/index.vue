@@ -2,14 +2,6 @@
   <!-- todo 为底部tabbar -->
   <HeaderNav></HeaderNav>
 
-  <!-- todo 该上传为测试目录用, -->
-  <p>
-    <input type="file" name="txt-file" accept=".txt" @change='uploadBook' />
-  </p>
-
-  <!-- todo 该上传为测试目录用,后期删除 -->
-
-
   <div v-show="nodelist" class="relative z-10" role="dialog" aria-modal="true">
     <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
     <div class="fixed inset-0 overflow-hidden">
@@ -99,19 +91,13 @@
 import { ref, reactive } from 'vue';
 import { useRoute } from 'vue-router';
 import type { BookIF } from '@/types/index'
-import { authorParser, getZJ } from '@/utils/book';
 import { kBToMB } from '@/utils/tools';
 import HeaderNav from '@/components/hearder.vue'
 import NodeLists from '@/components/nodeList.vue'
 
-
 const route = useRoute()
 
 
-// 根据id查找小说信息
-const findBookByIdFormDB = (id: string) => {
-
-}
 
 
 onBeforeMount(() => {
@@ -133,43 +119,6 @@ const BookInfo: BookIF = reactive({
 let nodelist = ref(false)
 const bookBody = ref('')
 let chapterList: string[] = reactive([])
-
-
-
-const uploadBook = (e: Event) => {
-  const files = (<HTMLInputElement>e.target).files as FileList;
-  const txtNovel = files?.[0]
-  if (!txtNovel) return
-
-  const { size, name, lastModified } = txtNovel
-
-  BookInfo.name = name.split('.')[0]  // =>['bookname','txt']
-  BookInfo.size = kBToMB(size) + 'MB'
-  BookInfo.uploadTime = new Date(lastModified).toLocaleDateString('zh-cn')
-
-  getBookBody(txtNovel)
-
-}
-
-// 获取正文  todo:使用 web-worker开启后台线程解析小说
-function getBookBody(book: Blob) {
-
-  const reader = new FileReader()
-  reader.readAsText(book)
-
-  reader.onload = e => {
-
-    const fullBook = reader.result as string
-    let author = authorParser(fullBook)
-
-
-    BookInfo.author = author
-
-    bookBody.value = fullBook
-    chapterList = getZJ(bookBody.value) as string[]
-
-  }
-}
 
 
 

@@ -15,12 +15,11 @@
 
 <script setup lang='ts'>
 import { useBook } from '@/hooks/useBook';
-
-
 import bookItem from './components/bookItem.vue'
 
-
 const { uploadBook, state } = useBook()
+
+
 
 onBeforeMount(() => {
   const list = <Array<any>>JSON.parse(localStorage.getItem('list') as string)
@@ -28,6 +27,7 @@ onBeforeMount(() => {
     state.bookList = list
   }
 })
+
 
 
 
