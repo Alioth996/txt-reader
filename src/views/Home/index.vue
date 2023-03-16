@@ -7,26 +7,48 @@
 
     <div class="book-history">
       <ul class="novel-list" lg:w-full px-sm grid lg:grid-cols-2 grid-cols-1 gap-10>
-        <book-item v-for="book in state.bookList" :key="book.bookID" :book="book" />
+        <book-item v-for="book in state.bookList" :key="book.id" :book="book" />
       </ul>
     </div>
   </div>
 </template>
 
 <script setup lang='ts'>
-import { useBook } from '@/hooks/useBook';
+import { useBookWorker } from '@/hooks/useWorker';
 import bookItem from './components/bookItem.vue'
+import type { BookIF } from '@/types';
+import { getAllBookInfo } from '@/utils/db';
 
-const { uploadBook, state } = useBook()
+const { bookWorker } = useBookWorker()
 
-
-
-onBeforeMount(() => {
-  const list = <Array<any>>JSON.parse(localStorage.getItem('list') as string)
-  if (list != null) {
-    state.bookList = list
-  }
+const state = reactive<{ bookList: BookIF[] }>({
+  bookList: []
 })
+
+bookWorker.addEventListener('message', e => {
+  state.bookList = e.data as BookIF[]
+})
+
+
+const uploadBook = (e: Event) => {
+  const files = (e.target as HTMLInputElement)?.files as FileList
+  const txtNovel = files[0]
+  if (!txtNovel) return
+
+  bookWorker.postMessage(txtNovel)
+}
+onMounted(async () => {
+  const infoList = await getAllBookInfo<BookIF>()
+  state.bookList = infoList
+
+})
+
+
+onUnmounted(() => {
+  // 页面卸载之前关闭线程
+  bookWorker.terminate()
+})
+
 
 
 

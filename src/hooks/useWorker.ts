@@ -1,8 +1,8 @@
 import Worker from '@/utils/worker.ts?worker'
 
-export const useBookWorker = (book: Blob | File, id: string) => {
+export const useBookWorker = () => {
   const bookWorker = new Worker()
-  bookWorker.postMessage({ book, id })
-
-  onUnmounted(() => bookWorker.terminate())
+  return {
+    bookWorker
+  }
 }
