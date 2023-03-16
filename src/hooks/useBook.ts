@@ -1,6 +1,6 @@
-import { reactive } from 'vue'
 import type { BookIF } from '@/types/index'
 import { getBookId, kBToMB, parseTime } from '@/utils/tools'
+import { useBookWorker } from '@/hooks/useWorker'
 
 let timer: any
 
@@ -35,9 +35,10 @@ export const useBook = () => {
       case true:
         state.bookList.unshift(book)
 
-        // 5秒之后再存入,可能会连续导入小说
+        // 2秒之后再存入,可能会连续导入小说
         timer = setTimeout(() => {
           localStorage.setItem('list', JSON.stringify(state.bookList))
+          clearTimeout(timer)
         }, 2 * 1000)
 
         console.log(`--系统提示--: 小说 ${book.name} 已导入`)
@@ -61,6 +62,11 @@ export const useBook = () => {
     const txtNovel = fileList[0]
     if (!txtNovel) return
 
+    // todo web worker解析目录与正文
+    // 开启一个后台线程
+
+    useBookWorker(txtNovel)
+
     const { size, name, lastModified } = txtNovel
     novel = {
       size: kBToMB(size),
@@ -71,6 +77,11 @@ export const useBook = () => {
 
     addBook(novel)
   }
+
+  onUnmounted(() => {
+    clearTimeout(timer)
+    timer = null
+  })
 
   return {
     state,
