@@ -1,7 +1,6 @@
 import { chaptersPaser, authorParser, getZJ } from '@/utils/book'
-import { getBookId } from '@/utils/tools'
 import { test, describe } from 'vitest'
-
+import { hashBookName } from '@/utils/tools'
 // 并发测试
 describe.concurrent('书籍相关逻辑测试', () => {
   test('chapterPaser提取书籍章节列表', ({ expect }) => {
@@ -28,6 +27,10 @@ describe.concurrent('书籍相关逻辑测试', () => {
     ).toMatchInlineSnapshot()
   })
 
+  test('哈希小说名', ({ expect }) => {
+    expect(hashBookName('天龙八部')).toBe(719926381)
+  })
+
   test('getZJ提取书籍章节列表', ({ expect }) => {
     expect(
       getZJ(
@@ -50,10 +53,6 @@ describe.concurrent('书籍相关逻辑测试', () => {
           `
       )
     ).toMatchSnapshot()
-  })
-
-  test('获取书籍uuid', ({ expect }) => {
-    expect(getBookId()).toMatch(/\w{8}(-\w{4}){3}-\w{12}/)
   })
 
   test('提取书籍作者', ({ expect }) => {

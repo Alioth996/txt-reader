@@ -35,9 +35,11 @@ self.addEventListener('message', async e => {
   const book = e.data as File
   const { name, lastModified, size } = book
 
+  const bookName = name.split('.')[0]
+
   const bookInfo: BookIF = {
-    name: name.split('.')[0],
-    id: hashBookName(name),
+    name: bookName,
+    id: hashBookName(bookName),
     size: kBToMB(size),
     uploadTime: new Date(lastModified).toLocaleDateString('zh-cn')
   }

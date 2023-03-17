@@ -64,23 +64,25 @@ const 作者正则 = /作者\W{2,7}/
 
 
 ```
+
 ---
 
 ### How to work it
 
-**``SSG`` MODE**:
-  ```bash
-  pnpm i
+**`SSG` MODE**:
 
-  #please build first!!(important)
-  pnpm run build
+```bash
+pnpm i
 
-  #then view ssg page
-  pnpm run preview
+#please build first!!(important)
+pnpm run build:ssg
 
-  ```
+#then view ssg page
+pnpm run preview
 
-**``VUE-SFC`` MODE**
+```
+
+**`VUE-SFC` MODE**
 
 ```bash
 
@@ -89,4 +91,3 @@ pnpm i
 pnpm run dev
 
 ```
-
