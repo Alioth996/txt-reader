@@ -91,13 +91,10 @@
 import { ref, reactive } from 'vue';
 import { useRoute } from 'vue-router';
 import type { BookIF } from '@/types/index'
-import { kBToMB } from '@/utils/tools';
 import HeaderNav from '@/components/hearder.vue'
 import NodeLists from '@/components/nodeList.vue'
 
 const route = useRoute()
-
-
 
 
 onBeforeMount(() => {
@@ -109,11 +106,12 @@ onBeforeMount(() => {
 
 
 
-const BookInfo: BookIF = reactive({
+const BookInfo = reactive<BookIF>({
+  id: '',
+  author: '',
   size: '',
   name: '',
-  uploadTime: '',
-  bookID: ''
+  uploadTime: ''
 })
 
 let nodelist = ref(false)
