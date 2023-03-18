@@ -9,6 +9,8 @@ vue3 + ts 开发的本地阅读器
 - 章节列表
 - 正文阅读(长屏阅读)
 - SSG
+- web worker
+- IndexDB
 
 ---
 
@@ -38,8 +40,6 @@ const 作者正则 = /作者\W{2,7}/
 - 正文分片
 - 章节与正文锚点联动
 - 下拉懒加载正文
-- web worker
-- IndexDB
 - PWA
 
 ---
@@ -75,7 +75,7 @@ const 作者正则 = /作者\W{2,7}/
 pnpm i
 
 #please build first!!(important)
-pnpm run build:ssg
+pnpm run build
 
 #then view ssg page
 pnpm run preview

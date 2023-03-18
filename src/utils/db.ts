@@ -1,7 +1,5 @@
 import { get, set, del, createStore, values } from 'idb-keyval'
 
-import { onMounted } from 'vue'
-
 type BookIDT = number | string
 
 export const useIndexedDB = () => {
