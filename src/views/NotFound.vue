@@ -9,9 +9,11 @@
 </template>
 
 <script setup lang="ts">
+import { useHead } from '@vueuse/head';
+
 
 useHead({
-    title: '404 - Not-Found'
+    title: '文曲阅读 | 404 - Not-Found'
 })
 
 

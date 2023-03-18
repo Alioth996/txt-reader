@@ -93,6 +93,7 @@ import { useRoute } from 'vue-router';
 import type { BookIF } from '@/types/index'
 import HeaderNav from '@/components/hearder.vue'
 import NodeLists from '@/components/nodeList.vue'
+import { useHead } from '@vueuse/head'
 
 const route = useRoute()
 
