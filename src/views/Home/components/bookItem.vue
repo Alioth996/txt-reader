@@ -27,7 +27,9 @@
 import deleteIcon from '@/assets/delete-red.svg'
 import { useRouter } from 'vue-router';
 import { BookIF } from '@/types';
-import { removeBook } from '@/utils/db';
+import { useIndexedDB } from '@/utils/db';
+
+const { removeBook } = useIndexedDB()
 
 const props = defineProps({
     book: {

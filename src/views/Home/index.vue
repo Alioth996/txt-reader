@@ -14,19 +14,24 @@
 </template>
 
 <script setup lang='ts'>
-import { useBookWorker } from '@/hooks/useWorker';
+import { useWorker } from '@/hooks/useWorker';
 import bookItem from './components/bookItem.vue'
 import type { BookIF } from '@/types';
-import { getAllBookInfo } from '@/utils/db';
+import { useIndexedDB } from '@/utils/db';
 
-const { bookWorker } = useBookWorker()
 
+/**
+ *  ! vite-ssg两个大坑
+ *  !Worker与IndexedDB都是Window的属性, Vue渲染生命周期才能获取到
+ */
+
+// vite-ssg build: 三者皆为not defined 打包失败
+// console.log(window, indexedDB, Worker);
+
+
+let bookWorker: Worker
 const state = reactive<{ bookList: BookIF[] }>({
   bookList: []
-})
-
-bookWorker.addEventListener('message', e => {
-  state.bookList = e.data as BookIF[]
 })
 
 
@@ -38,6 +43,14 @@ const uploadBook = (e: Event) => {
   bookWorker.postMessage(txtNovel)
 }
 onMounted(async () => {
+  bookWorker = useWorker()
+
+  bookWorker.addEventListener('message', e => {
+    state.bookList = e.data as BookIF[]
+  })
+
+  const { getAllBookInfo } = useIndexedDB()
+
   const infoList = await getAllBookInfo<BookIF>()
   state.bookList = infoList
 

@@ -15,9 +15,10 @@
 export {}
 
 import { BookIF } from '@/types'
-import { addBook, addBookInfo, getAllBookInfo } from './db'
+import { useIndexedDB } from './db'
 import { hashBookName, kBToMB } from './tools'
 
+const { addBook, addBookInfo, getAllBookInfo } = useIndexedDB()
 const readBook = (book: Blob): Promise<string> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader()

@@ -10,10 +10,9 @@
   },
   "scripts": {
     "dev": "vite",
-    "build:ssg": "vite-ssg build",
-    "build:sfc": "vue-tsc && vite build",
-    "preview": "vite preview",
     "test": "vitest --watch",
+    "build": "vite-ssg build",
+    "preview": "vite-ssg build & vite preview",
     "coverage": "vitest run --coverage"
   },
   "dependencies": {

@@ -10,25 +10,16 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/home',
     name: 'Home',
-    meta: {
-      title: '文曲阅读_导入本地小说_支持离线阅读 支持txt格式'
-    },
     component: Home
   },
   {
-    path: '/reader/book/:bookName/:bookId',
+    path: '/reader/:bookName/:bookId',
     name: 'Reader',
-    meta: {
-      title: '文曲阅读-阅读小说'
-    },
     component: () => import('@/views/Reader/index.vue')
   },
   {
     path: '/setting',
     name: 'Setting',
-    meta: {
-      title: '文曲阅读-系统设置'
-    },
     component: () => import('@/views/Option/index.vue')
   },
   {
@@ -37,9 +28,6 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/not-found',
-    meta: {
-      title: '404-访问路径不存在'
-    },
     component: () => import('@/views/NotFound.vue')
   }
 ]
