@@ -15,7 +15,7 @@
 
         <div flex items-end>
             <button w-full h-10 text-md py-2 b-rd-1 flex-c bg-grayLight text-white text-sm font-400 cursor="pointer"
-                hover="opacity-90 text-bookbg" class="delete-btn" hover:bg-gray @click="deleteBook(book.id)">
+                hover="opacity-90 text-bookbg" class="delete-btn" hover:bg-gray @click="deleteBook(book.id, book.name)">
                 <img :src="deleteIcon" alt="del" w-6 h-6>
             </button>
         </div>
@@ -28,10 +28,15 @@ import deleteIcon from '@/assets/delete-red.svg'
 import { useRouter } from 'vue-router';
 import { BookIF } from '@/types';
 import { useIndexedDB } from '@/utils/db';
+import { useDialog } from 'naive-ui'
+import DailogContent from '@/components/DailogContent.vue';
+
 
 const { removeBook } = useIndexedDB()
 
-const props = defineProps({
+const dialog = useDialog()
+
+defineProps({
     book: {
         type: Object as PropType<BookIF>,
         required: true
@@ -39,8 +44,15 @@ const props = defineProps({
 })
 
 
-const deleteBook = async (id: string | number) => {
-    removeBook(id)
+const deleteBook = async (id: string | number, bookName: string) => {
+    dialog.warning({
+        title: '温馨提示',
+        content: () => h(DailogContent, { label: '删除小说', content: `${bookName}` }),
+        positiveText: '确定',
+        onPositiveClick: () => {
+            removeBook(id)
+        },
+    })
 }
 
 const router = useRouter()
