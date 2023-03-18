@@ -9,6 +9,7 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    DailogContent: typeof import('./components/DailogContent.vue')['default']
     Hearder: typeof import('./components/hearder.vue')['default']
     NodeList: typeof import('./components/nodeList.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

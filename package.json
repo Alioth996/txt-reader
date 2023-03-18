@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "idb-keyval": "^6.2.0",
+    "naive-ui": "^2.34.3",
     "vue": "^3.2.45"
   },
   "devDependencies": {

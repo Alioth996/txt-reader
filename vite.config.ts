@@ -4,6 +4,7 @@ import { resolve } from 'path'
 
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
+import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
 
 import UnoCSS from 'unocss/vite'
 import { presetAttributify, presetUno } from 'unocss'
@@ -11,17 +12,14 @@ import { presetAttributify, presetUno } from 'unocss'
 export default defineConfig({
   plugins: [
     vue(),
-    AutoImport({
-      imports: ['vue', 'vue-router', 'vitest'],
-      dts: resolve(__dirname, 'src/auto-import.d.ts')
-    }),
     // 组件自动按需引入
     Components({
       dts: resolve(__dirname, 'src/components.d.ts')
     }),
     AutoImport({
-      imports: ['vue', 'vue-router', '@vueuse/head'],
-      dts: resolve(__dirname, 'src/auto-import.d.ts')
+      imports: ['vue', 'vue-router', '@vueuse/head', 'vitest'],
+      dts: resolve(__dirname, 'src/auto-import.d.ts'),
+      resolvers: [NaiveUiResolver()]
     }),
     UnoCSS({
       presets: [presetAttributify({}), presetUno()],
