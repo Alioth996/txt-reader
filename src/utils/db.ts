@@ -1,27 +1,43 @@
 import { get, set, del, createStore, values } from 'idb-keyval'
 
-const BookBody = createStore('book', 'content')
-const BookList = createStore('list', 'test')
+import { onMounted } from 'vue'
 
-// 添加正文
-export const addBook = async (book: string, id: number | string) => {
-  await set(id, book, BookBody)
-}
+type BookIDT = number | string
 
-export const removeBook = async (bookId: number | string) => {
-  await del(bookId, BookBody)
-  await del(bookId, BookList)
-}
+export const useIndexedDB = () => {
+  const BookBody = createStore('book', 'content')
+  const BookList = createStore('list', 'bookInfo')
 
-export const getBook = async (bookId: number | string) => {
-  await get(bookId, BookBody)
-}
+  // 添加正文
+  const addBook = async (book: string, bookId: BookIDT) => {
+    await set(bookId, book, BookBody)
+  }
 
-// 添加一本小说信息
-export const addBookInfo = async (bookId: string | number, bookInfo: any) => {
-  await set(bookId, bookInfo, BookList)
-}
-// 获取所有小说列表
-export const getAllBookInfo = <T>(): Promise<T[]> => {
-  return values(BookList)
+  // 删除一本小说
+  const removeBook = async (bookId: BookIDT) => {
+    await del(bookId, BookBody)
+    await del(bookId, BookList)
+  }
+
+  // 获取小说正文
+  const getBook = async (bookId: BookIDT) => {
+    await get(bookId, BookBody)
+  }
+
+  // 添加一本小说信息
+  const addBookInfo = async (bookId: BookIDT, bookInfo: any) => {
+    await set(bookId, bookInfo, BookList)
+  }
+  // 获取所有小说列表
+  const getAllBookInfo = <T>(): Promise<T[]> => {
+    return values(BookList)
+  }
+
+  return {
+    addBook,
+    addBookInfo,
+    removeBook,
+    getBook,
+    getAllBookInfo
+  }
 }
