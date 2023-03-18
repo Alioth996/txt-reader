@@ -22,7 +22,7 @@ const { addBook, addBookInfo, getAllBookInfo } = useIndexedDB()
 const readBook = (book: Blob): Promise<string> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader()
-    reader.readAsText(book)
+    reader.readAsText(book, 'utf-8')
     reader.onload = _ => {
       if (reader.DONE == 2) {
         resolve(reader.result as string)
@@ -46,6 +46,7 @@ self.addEventListener('message', async e => {
   }
 
   readBook(book).then(async content => {
+    // todo 提取目录
     await addBook(content, bookInfo.id)
     await addBookInfo(bookInfo.id, bookInfo)
 

@@ -19,7 +19,7 @@ export const useIndexedDB = () => {
 
   // 获取小说正文
   const getBook = async (bookId: BookIDT) => {
-    await get(bookId, BookBody)
+    return await get(bookId, BookBody)
   }
 
   // 添加一本小说信息
