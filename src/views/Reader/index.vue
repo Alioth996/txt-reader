@@ -2,7 +2,14 @@
   <!-- todo 为底部tabbar -->
   <HeaderNav></HeaderNav>
 
-  <aside-chapters :chapter-list="chapterList" :chapter-show="isChapterShow" />
+  <!-- 侧边目录 -->
+  <n-drawer v-model:show="isChapterShow" width="300" placement="left" :show-mask="false">
+    <n-drawer-content title="目录" closable>
+      <template #default>
+        <p v-for="chapter in chapterList" text-4>{{ chapter }}</p>
+      </template>
+    </n-drawer-content>
+  </n-drawer>
 
   <div class="bg-white py-32 px-6 lg:px-8 grid lg:grid-cols-5 xl:grid-cols-7 2xl:px-[200px]">
     <div class="col-span-1 hidden lg:block xl:col-span-2">
@@ -23,6 +30,7 @@
         <div class="text-sm leading-6"><strong class="font-semibold text-gray-900">Maria Hill</strong> – Marketing Manager
         </div>
       </figcaption>
+      <button px-5 py-2 @click="isChapterShow = !isChapterShow">目录</button>
       <p class="text-base font-semibold leading-7 text-indigo-600 mt-10 pb-2">书籍信息</p>
       <figure class="border-l border-indigo-600 pl-9">
         <blockquote class="font-semibold text-gray-900">
@@ -69,19 +77,10 @@ import { useRoute } from 'vue-router';
 import type { BookIF } from '@/types/index'
 import HeaderNav from '@/components/hearder.vue'
 import { useHead } from '@vueuse/head'
-import AsideChapters from './components/AsideChapters.vue';
 
 const route = useRoute()
 
 const isChapterShow = ref(false)
-
-
-/**
- *  todo 点击显示目录按钮时才显示
- */
-setTimeout(() => {
-  isChapterShow.value = true
-}, 2000);
 
 
 onBeforeMount(() => {
