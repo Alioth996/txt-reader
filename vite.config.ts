@@ -14,12 +14,12 @@ export default defineConfig({
     vue(),
     // 组件自动按需引入
     Components({
-      dts: resolve(__dirname, 'src/components.d.ts')
+      dts: resolve(__dirname, 'src/components.d.ts'),
+      resolvers: [NaiveUiResolver()]
     }),
     AutoImport({
       imports: ['vue', 'vue-router', '@vueuse/head', 'vitest'],
-      dts: resolve(__dirname, 'src/auto-import.d.ts'),
-      resolvers: [NaiveUiResolver()]
+      dts: resolve(__dirname, 'src/auto-import.d.ts')
     }),
     UnoCSS({
       presets: [presetAttributify({}), presetUno()],
