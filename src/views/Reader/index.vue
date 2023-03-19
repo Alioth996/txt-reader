@@ -2,35 +2,11 @@
   <!-- todo 为底部tabbar -->
   <HeaderNav></HeaderNav>
 
-  <div v-show="nodelist" class="relative z-10" role="dialog" aria-modal="true">
-    <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-    <div class="fixed inset-0 overflow-hidden">
-      <div class="absolute inset-0 overflow-hidden">
-        <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
-          <div class="pointer-events-auto relative w-96">
-            <div class="absolute top-0 left-0 -ml-8 flex pt-4 pr-2 sm:-ml-10 sm:pr-4">
-              <button @click="nodelist = !nodelist" type="button"
-                class="rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
-                <span class="sr-only">Close panel</span>
-                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                  aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            <div class="h-full overflow-y-auto bg-white">
-              <NodeLists :listDatas="chapterList" class="space-y-6 pb-16"></NodeLists>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <aside-chapters :chapter-list="chapterList" :chapter-show="isChapterShow" />
 
   <div class="bg-white py-32 px-6 lg:px-8 grid lg:grid-cols-5 xl:grid-cols-7 2xl:px-[200px]">
     <div class="col-span-1 hidden lg:block xl:col-span-2">
-      <NodeLists :listDatas="chapterList"></NodeLists>
+      <!-- <NodeLists :listDatas="chapterList" :chapter-list=></NodeLists> -->
     </div>
     <div class="mx-auto max-w-3xl text-base leading-7 text-gray-700 lg:col-span-4 xl:col-span-5">
       <div class="lg:hidden">
@@ -92,10 +68,20 @@ import { ref, reactive } from 'vue';
 import { useRoute } from 'vue-router';
 import type { BookIF } from '@/types/index'
 import HeaderNav from '@/components/hearder.vue'
-import NodeLists from '@/components/nodeList.vue'
 import { useHead } from '@vueuse/head'
+import AsideChapters from './components/AsideChapters.vue';
 
 const route = useRoute()
+
+const isChapterShow = ref(false)
+
+
+/**
+ *  todo 点击显示目录按钮时才显示
+ */
+setTimeout(() => {
+  isChapterShow.value = true
+}, 2000);
 
 
 onBeforeMount(() => {
@@ -117,7 +103,7 @@ const BookInfo = reactive<BookIF>({
 
 let nodelist = ref(false)
 const bookBody = ref('')
-let chapterList: string[] = reactive([])
+let chapterList: string[] = reactive(['第一章 难得回家', '第二章 大家快乐打卡'])
 
 
 
