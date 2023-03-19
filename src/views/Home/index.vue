@@ -54,6 +54,13 @@ onMounted(async () => {
   const infoList = await getAllBookInfo<BookIF>()
   state.bookList = infoList
 
+  bookWorker.addEventListener('error', e => {
+    console.log(e.lineno);
+    console.log(e.filename);
+    console.log(e.message);
+
+  })
+
 })
 
 
