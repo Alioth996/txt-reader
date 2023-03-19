@@ -7,8 +7,8 @@ export const useIndexedDB = () => {
   const BookList = createStore('list', 'bookInfo')
 
   // 添加正文
-  const addBook = async (book: string, bookId: BookIDT) => {
-    await set(bookId, book, BookBody)
+  const addBook = async (book: string, chapterList: Array<string>, bookId: BookIDT) => {
+    await set(bookId, { content: book, chapters: chapterList }, BookBody)
   }
 
   // 删除一本小说

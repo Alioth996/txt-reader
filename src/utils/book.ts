@@ -1,6 +1,10 @@
 export function authorParser(book: string): string {
-  const authorRegx = /作者\W{2,7}/
-  const author = book.match(authorRegx)?.toString() as string
+  const authorRegx = /作者[:|\s|\t]?\W{2,7}/s
+  // 可选链断言与非空断言
+  const author = book
+    .match(authorRegx)
+    ?.toString()!
+    .replace(/\r\n\t/g, '')!
   return author
 }
 
@@ -27,13 +31,13 @@ export function getZW(novel: string) {
  *
  */
 export function chaptersPaser(novel: string, chapterRegx?: RegExp): Promise<string[]> {
+  // const 章节正则 = /[^\s^\t^\n]?[零〇一二三四五六七八九十百千万\d]{1,7}[章节卷部回]?[^\t|\s]+(.*)[^\n|^\r]/g  正文提取
   const 章节正则 = /[^\s^\t^\n]?[零〇一二三四五六七八九十百千万\d]{1,7}[章节卷部回]?[\t|\s]+(.*)[^\n|^\r]/g
   let chapterList: RegExpMatchArray | null
 
   return new Promise<string[]>((reslove, reject) => {
     chapterList = novel.match(章节正则)
     if (chapterList === null) {
-      console.log(chapterList)
       reject(new Error('章节解析失败'))
     }
 
