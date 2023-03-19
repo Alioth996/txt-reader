@@ -17,6 +17,7 @@ export {}
 import { BookIF } from '@/types'
 import { useIndexedDB } from './db'
 import { hashBookName, kBToMB } from './tools'
+import { getZJ, chaptersPaser, authorParser } from '@/utils/book'
 
 const { addBook, addBookInfo, getAllBookInfo } = useIndexedDB()
 const readBook = (book: Blob): Promise<string> => {
@@ -32,7 +33,7 @@ const readBook = (book: Blob): Promise<string> => {
   })
 }
 
-self.addEventListener('message', async e => {
+self.addEventListener('message', async (e: MessageEvent) => {
   const book = e.data as File
   const { name, lastModified, size } = book
 
@@ -46,8 +47,11 @@ self.addEventListener('message', async e => {
   }
 
   readBook(book).then(async content => {
-    // todo 提取目录
-    await addBook(content, bookInfo.id)
+    const author = authorParser(content.slice(0, 50))
+    const chapterList = await chaptersPaser(content)
+
+    bookInfo.author = author
+    await addBook(content, chapterList, bookInfo.id)
     await addBookInfo(bookInfo.id, bookInfo)
 
     const bookList = await getAllBookInfo()
