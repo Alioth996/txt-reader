@@ -12,6 +12,7 @@
     "dev": "vite",
     "test": "vitest --watch",
     "build": "vite-ssg build",
+    "build:sfc": "vue-tsc && vite build",
     "preview": "vite-ssg build & vite preview",
     "coverage": "vitest run --coverage"
   },

@@ -12,3 +12,8 @@ export interface ChapterIF {
   chapterID: number
   chapterName: string
 }
+
+export enum BookAction {
+  UPLOAD_BOOK = 1, //添加
+  DELETE_BOOK = 0 //删除
+}
