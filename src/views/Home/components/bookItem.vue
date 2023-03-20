@@ -32,7 +32,12 @@ import { useDialog } from 'naive-ui'
 import DailogContent from '@/components/DailogContent.vue';
 
 
-const { removeBook } = useIndexedDB()
+
+const { removeBook, getAllBookInfo } = useIndexedDB()
+const emit = defineEmits<{
+    (e: 'del-book', books: BookIF[]): void
+}>()
+
 
 const dialog = useDialog()
 
@@ -49,8 +54,10 @@ const deleteBook = async (id: string | number, bookName: string) => {
         title: '温馨提示',
         content: () => h(DailogContent, { label: '删除小说', content: `${bookName}` }),
         positiveText: '确定',
-        onPositiveClick: () => {
-            removeBook(id)
+        onPositiveClick: async () => {
+            await removeBook(id)
+            const books = await getAllBookInfo<BookIF>()
+            emit('del-book', books)
         },
     })
 }

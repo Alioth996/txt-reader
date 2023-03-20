@@ -17,18 +17,19 @@ export const useIndexedDB = () => {
     await del(bookId, BookList)
   }
 
+  // 添加一本小说信息
+  const addBookInfo = async (bookId: BookIDT, bookInfo: any) => {
+    await set(bookId, bookInfo, BookList)
+  }
+
   // 获取小说正文
   const getBook = async (bookId: BookIDT) => {
     return await get(bookId, BookBody)
   }
 
-  // 添加一本小说信息
-  const addBookInfo = async (bookId: BookIDT, bookInfo: any) => {
-    await set(bookId, bookInfo, BookList)
-  }
   // 获取所有小说列表
-  const getAllBookInfo = <T>(): Promise<T[]> => {
-    return values(BookList)
+  const getAllBookInfo = async <T>(): Promise<T[]> => {
+    return await values(BookList)
   }
 
   return {

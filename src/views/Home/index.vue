@@ -7,7 +7,7 @@
 
     <div class="book-history">
       <ul class="novel-list" lg:w-full px-sm grid lg:grid-cols-2 grid-cols-1 gap-10>
-        <book-item v-for="book in state.bookList" :key="book.id" :book="book" />
+        <book-item v-for="book in state.bookList" :key="book.id" :book="book" @del-book="updateBookAfterDel" />
       </ul>
     </div>
   </div>
@@ -30,9 +30,12 @@ import { useIndexedDB } from '@/utils/db';
 
 
 let bookWorker: Worker
+
 const state = reactive<{ bookList: BookIF[] }>({
   bookList: []
 })
+
+
 
 
 const uploadBook = (e: Event) => {
@@ -42,6 +45,13 @@ const uploadBook = (e: Event) => {
 
   bookWorker.postMessage(txtNovel)
 }
+
+
+const updateBookAfterDel = async (books: BookIF[]) => {
+
+  state.bookList = books
+}
+
 onMounted(async () => {
   bookWorker = useWorker()
 
@@ -50,6 +60,7 @@ onMounted(async () => {
   })
 
   const { getAllBookInfo } = useIndexedDB()
+
 
   const infoList = await getAllBookInfo<BookIF>()
   state.bookList = infoList
@@ -60,6 +71,11 @@ onMounted(async () => {
     console.log(e.message);
 
   })
+
+
+
+
+
 
 })
 
