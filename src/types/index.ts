@@ -1,6 +1,6 @@
 // ? 书籍接口
 export interface BookIF {
-  id: string | number
+  id: number
   name: string
   size: string
   author?: string
@@ -16,4 +16,9 @@ export interface ChapterIF {
 export enum BookAction {
   UPLOAD_BOOK = 1, //添加
   DELETE_BOOK = 0 //删除
+}
+
+export interface BookBodyIF {
+  content: string
+  chapters: string[]
 }

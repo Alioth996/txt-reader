@@ -37,7 +37,7 @@ export default defineConfig({
           gray: '#353b48',
           dark: '#2c3e50',
           active: '#2980b9',
-          border: '#3498db80',
+          border: '#3498db',
           white: '#dfe6e9',
           error: '#e74c3c'
         }
