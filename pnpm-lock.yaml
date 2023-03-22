@@ -1,12 +1,16 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@types/lodash-es': ^4.17.7
   '@types/node': ^18.15.0
   '@vitejs/plugin-vue': ^4.0.0
   '@vueuse/head': ^1.1.23
   autoprefixer: ^10.4.14
   idb-keyval: ^6.2.0
   less: ^4.1.3
+  lodash: ^4.17.21
+  lodash-es: ^4.17.21
+  lodash-unified: ^1.0.3
   naive-ui: ^2.34.3
   postcss: ^8.4.21
   tailwindcss: ^3.2.7
@@ -23,15 +27,19 @@ specifiers:
 
 dependencies:
   idb-keyval: 6.2.0
+  lodash-es: 4.17.21
+  lodash-unified: 1.0.3_tknf7errc3xdqocd3ryzzla7vq
   naive-ui: 2.34.3_vue@3.2.47
   vue: 3.2.47
 
 devDependencies:
+  '@types/lodash-es': 4.17.7
   '@types/node': 18.15.0
   '@vitejs/plugin-vue': 4.0.0_vite@4.1.4+vue@3.2.47
   '@vueuse/head': 1.1.23_vue@3.2.47
   autoprefixer: 10.4.14_postcss@8.4.21
   less: 4.1.3
+  lodash: 4.17.21
   postcss: 8.4.21
   tailwindcss: 3.2.7_postcss@8.4.21
   typescript: 4.9.5
@@ -426,11 +434,9 @@ packages:
     resolution: {integrity: sha512-z0ptr6UI10VlU6l5MYhGwS4mC8DZyYer2mCoyysZtSF7p26zOX8UpbrV0YpNYLGS8K4PUFIyEr62IMFFjveSiQ==}
     dependencies:
       '@types/lodash': 4.14.191
-    dev: false
 
   /@types/lodash/4.14.191:
     resolution: {integrity: sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==}
-    dev: false
 
   /@types/node/18.15.0:
     resolution: {integrity: sha512-z6nr0TTEOBGkzLGmbypWOGnpSpSIBorEhC4L+4HeQ2iezKCi4f77kyslRwvHeNitymGQ+oFyIWGP96l/DPSV9w==}
@@ -1747,9 +1753,20 @@ packages:
     resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
     dev: false
 
+  /lodash-unified/1.0.3_tknf7errc3xdqocd3ryzzla7vq:
+    resolution: {integrity: sha512-WK9qSozxXOD7ZJQlpSqOT+om2ZfcT4yO+03FuzAHD0wF6S0l0090LRPDx3vhTTLZ8cFKpBn+IOcVXK6qOcIlfQ==}
+    peerDependencies:
+      '@types/lodash-es': '*'
+      lodash: '*'
+      lodash-es: '*'
+    dependencies:
+      '@types/lodash-es': 4.17.7
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+    dev: false
+
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: false
 
   /loupe/2.3.6:
     resolution: {integrity: sha512-RaPMZKiMy8/JruncMU5Bt6na1eftNoo++R4Y+N2FrxkDVTrGvcyzFTsaGif4QTeKESheMGegbhw6iUAq+5A8zA==}

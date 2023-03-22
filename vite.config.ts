@@ -39,7 +39,9 @@ export default defineConfig({
           active: '#2980b9',
           border: '#3498db',
           white: '#dfe6e9',
-          error: '#e74c3c'
+          error: '#e74c3c',
+          navColor: '#e29c45',
+          chapterHover: '#bb7c2e'
         }
       }
     })
