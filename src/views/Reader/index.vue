@@ -1,39 +1,49 @@
 <template>
-  <!-- 侧边目录 -->
-  <n-drawer v-model:show="isChapterShow" width="360" placement="left" :show-mask="false" bg-grayLight>
-    <n-drawer-content closable title="目录">
-      <template #default>
-        <p v-for="chapter in state.chapterList" p-1 hover:color-white text-gray cursor-pointer text-4 class="chapter">{{
-          chapter }}
-        </p>
-      </template>
-    </n-drawer-content>
-  </n-drawer>
-
   <!-- todo 移动端正文样式显示有问题 -->
   <section flex-c>
     <article text-dark text-4 p-8 lg-w-220 sm-w-140 xl-w-200 w-screen id="txt-body">{{ bookBody }}</article>
   </section>
   <footer class="menu" flex-c>
-    <nav flex-c justify-around bg-bookbg lg-w-220 sm-w-140 xl-w-200 w-screen text-4>
+    <nav flex-c justify-around bg-bookbg lg-w-220 sm-w-160 xl-w-200 w-screen text-4 text-navColor>
       <div cursor-pointer flex-1 h-12 flex-c @click="openLeftSideChapters">目录</div>
-      <div cursor-pointer flex-1 h-12 flex-c>主页</div>
-      <div cursor-pointer flex-1 h-12 flex-c>暗黑</div>
+      <div cursor-pointer flex-1 h-12 flex-c>
+        <RouterLink text-inherit :to="{ name: 'Home' }">主页</RouterLink>
+      </div>
+      <div cursor-pointer flex-1 h-12 flex-c @click="toggleTheme">暗黑</div>
       <div cursor-pointer flex-1 h-12 flex-c>设置</div>
     </nav>
   </footer>
+
+  <!-- 侧边目录 -->
+  <n-drawer v-model:show="isChapterShow" width="360" placement="left" bg-grayLight>
+    <n-drawer-content closable>
+      <template #header>
+        <span>{{ currentBookName ?? '' }} </span>
+        <span p-l-4>目录</span>
+      </template>
+      <template #default>
+        <p v-for="chapter in state.chapterList" p-1 text-gray cursor-pointer text-4 class="chapter"
+          hover:text-chapterHover>{{
+            chapter }}
+        </p>
+      </template>
+    </n-drawer-content>
+  </n-drawer>
 </template>
 
 <script setup lang='ts'>
 
 import { ref, reactive } from 'vue';
 import { useRoute } from 'vue-router';
+import { debounce } from 'lodash-unified'
 import type { BookBodyIF } from '@/types/index'
 import { useHead } from '@vueuse/head'
 import { useIndexedDB } from '@/utils/db'
+import { tr } from 'date-fns/locale';
 
 const { getBook } = useIndexedDB()
 
+let currentBookName = ref()
 
 const route = useRoute()
 const isChapterShow = ref(false)
@@ -43,17 +53,39 @@ let state = reactive<{ chapterList: string[] }>({
   chapterList: []
 })
 
-let timer: any
 
-const openLeftSideChapters = () => {
-  clearTimeout(timer)
-  timer = setTimeout(() => {
-    isChapterShow.value = !isChapterShow.value
-  }, 500);
+const openLeftSideChapters = debounce(() => {
+  isChapterShow.value = true
+}, 300)
+
+let flag = true
+const toggleTheme = () => {
+
+  nextTick(() => {
+    const app: HTMLElement = document.querySelector('#app')!
+    const Nav: HTMLElement = document.querySelector('nav')!
+
+
+    if (flag) {
+      app.style.backgroundColor = '#7f8c8d';
+      Nav.style.backgroundColor = '#7f8c8d';
+      flag = false
+    } else {
+      app.style.backgroundColor = '#ece6d9';
+      Nav.style.backgroundColor = '#ece6d9';
+      flag = true
+
+    }
+
+  })
+
+
 }
+
 
 onMounted(() => {
   const { bookName, bookId } = route.params
+  currentBookName.value = bookName
   useHead({
     title: bookName + '-文曲阅读',
   })
@@ -65,15 +97,6 @@ onMounted(() => {
 
   })
 })
-
-onUnmounted(() => {
-  clearTimeout(timer)
-})
-
-
-
-
-
 
 
 
@@ -101,7 +124,6 @@ footer.menu {
 
   nav {
     box-shadow: 0px -5px 8px -5px #00000030;
-    color: #e29c45;
   }
 
 }
