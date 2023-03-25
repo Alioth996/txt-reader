@@ -1,3 +1,5 @@
+import { type } from 'os'
+
 // ? 小说信息接口
 export interface BookIF {
   id: number
@@ -13,17 +15,16 @@ export interface ChapterIF {
   chapterName: string
 }
 
-// ? worker action
-export enum BookAction {
+// ?  action枚举
+export enum Action {
   UPLOAD_BOOK = 1, //添加
   DELETE_BOOK = 0 //删除
 }
-
-
-
 
 // ?小说内容接口
 export interface BookBodyIF {
   content: string
   chapters: string[]
 }
+
+export type getAllBooksT = <T>() => Promise<T[]>
