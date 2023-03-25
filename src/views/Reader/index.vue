@@ -10,7 +10,9 @@
         <RouterLink text-inherit :to="{ name: 'Home' }">主页</RouterLink>
       </div>
       <div cursor-pointer flex-1 h-12 flex-c @click="toggleTheme">暗黑</div>
-      <div cursor-pointer flex-1 h-12 flex-c>设置</div>
+      <div cursor-pointer flex-1 h-12 flex-c>
+        <RouterLink text-inherit :to="{ name: 'Setting' }">设置</RouterLink>
+      </div>
     </nav>
   </footer>
 
@@ -39,7 +41,6 @@ import { debounce } from 'lodash-unified'
 import type { BookBodyIF } from '@/types/index'
 import { useHead } from '@vueuse/head'
 import { useIndexedDB } from '@/utils/db'
-import { tr } from 'date-fns/locale';
 
 const { getBook } = useIndexedDB()
 
@@ -53,18 +54,18 @@ let state = reactive<{ chapterList: string[] }>({
   chapterList: []
 })
 
-
+// 防抖函数
 const openLeftSideChapters = debounce(() => {
   isChapterShow.value = true
 }, 300)
 
+// 乞丐版换肤
 let flag = true
 const toggleTheme = () => {
 
   nextTick(() => {
     const app: HTMLElement = document.querySelector('#app')!
     const Nav: HTMLElement = document.querySelector('nav')!
-
 
     if (flag) {
       app.style.backgroundColor = '#7f8c8d';
@@ -78,7 +79,6 @@ const toggleTheme = () => {
     }
 
   })
-
 
 }
 
@@ -97,8 +97,6 @@ onMounted(() => {
 
   })
 })
-
-
 
 </script>
 

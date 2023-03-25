@@ -11,6 +11,7 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     DailogContent: typeof import('./components/DailogContent.vue')['default']
     Hearder: typeof import('./components/hearder.vue')['default']
+    NDataTable: typeof import('naive-ui')['NDataTable']
     NDrawer: typeof import('naive-ui')['NDrawer']
     NDrawerContent: typeof import('naive-ui')['NDrawerContent']
     NodeList: typeof import('./components/nodeList.vue')['default']
