@@ -16,7 +16,7 @@
 <script setup lang='ts'>
 import { useWorker } from '@/hooks/useWorker';
 import bookItem from './components/bookItem.vue'
-import type { BookIF } from '@/types';
+import { Action, BookIF, getAllBooksT } from '@/types';
 import { useIndexedDB } from '@/utils/db';
 
 
@@ -30,6 +30,10 @@ import { useIndexedDB } from '@/utils/db';
 
 
 let bookWorker: Worker
+
+
+
+let getAllBooks: getAllBooksT
 
 const state = reactive<{ bookList: BookIF[] }>({
   bookList: []
@@ -47,9 +51,14 @@ const uploadBook = (e: Event) => {
 }
 
 
-const updateBookAfterDel = async (books: BookIF[]) => {
+const updateBookAfterDel = async (action: number) => {
 
-  state.bookList = books
+  if (action == Action.DELETE_BOOK) {
+    const books = await getAllBooks<BookIF>()
+    state.bookList = books
+  }
+
+
 }
 
 onMounted(async () => {
@@ -61,8 +70,9 @@ onMounted(async () => {
 
   const { getAllBookInfo } = useIndexedDB()
 
+  getAllBooks = getAllBookInfo
 
-  const infoList = await getAllBookInfo<BookIF>()
+  const infoList = await getAllBooks<BookIF>()
   state.bookList = infoList
 
   bookWorker.addEventListener('error', e => {

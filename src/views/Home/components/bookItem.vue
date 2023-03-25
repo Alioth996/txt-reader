@@ -30,23 +30,18 @@ import { BookIF } from '@/types';
 import { useIndexedDB } from '@/utils/db';
 import { useDialog } from 'naive-ui'
 import DailogContent from '@/components/DailogContent.vue';
+import { Action } from '@/types'
 
 
-
-const { removeBook, getAllBookInfo } = useIndexedDB()
+const { removeBook } = useIndexedDB()
 const emit = defineEmits<{
-    (e: 'del-book', books: BookIF[]): void
+    (e: 'del-book', action: number): void
 }>()
 
 
 const dialog = useDialog()
 
-defineProps({
-    book: {
-        type: Object as PropType<BookIF>,
-        required: true
-    }
-})
+defineProps<{ book: BookIF }>()
 
 
 const deleteBook = async (id: string | number, bookName: string) => {
@@ -56,8 +51,7 @@ const deleteBook = async (id: string | number, bookName: string) => {
         positiveText: '确定',
         onPositiveClick: async () => {
             await removeBook(id)
-            const books = await getAllBookInfo<BookIF>()
-            emit('del-book', books)
+            emit('del-book', Action.DELETE_BOOK)
         },
     })
 }

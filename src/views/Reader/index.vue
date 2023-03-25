@@ -1,5 +1,4 @@
 <template>
-  <!-- todo 移动端正文样式显示有问题 -->
   <section flex-c>
     <article text-dark text-4 p-8 lg-w-220 sm-w-140 xl-w-200 w-screen id="txt-body">{{ bookBody }}</article>
   </section>
