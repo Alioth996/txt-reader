@@ -24,7 +24,7 @@
       </template>
       <template #default>
         <p v-for="chapter in state.chapterList" p-1 text-gray cursor-pointer text-4 class="chapter"
-          hover:text-chapterHover>{{
+          hover:text-chapterHover v-title="{ nextTitle: chapter }">{{
             chapter }}
         </p>
       </template>
@@ -34,7 +34,7 @@
 
 <script setup lang='ts'>
 
-import { ref, reactive } from 'vue';
+import { ref, reactive, Directive, DirectiveBinding } from 'vue';
 import { useRoute } from 'vue-router';
 import { debounce } from 'lodash-unified'
 import type { BookBodyIF } from '@/types/index'
@@ -61,7 +61,6 @@ const openLeftSideChapters = debounce(() => {
 // 乞丐版换肤
 let flag = true
 const toggleTheme = () => {
-
   nextTick(() => {
     const app: HTMLElement = document.querySelector('#app')!
     const Nav: HTMLElement = document.querySelector('nav')!
@@ -81,6 +80,12 @@ const toggleTheme = () => {
 
 }
 
+
+const vTitle: Directive = {
+  mounted: (el: HTMLElement, binding?: DirectiveBinding, vNode?: any) => el.title = `${currentBookName.value} - ${el.innerText}`
+
+
+}
 
 onMounted(() => {
   const { bookName, bookId } = route.params
