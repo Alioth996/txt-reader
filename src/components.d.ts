@@ -11,10 +11,14 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     DailogContent: typeof import('./components/DailogContent.vue')['default']
     Hearder: typeof import('./components/hearder.vue')['default']
+    NButton: typeof import('naive-ui')['NButton']
     NDataTable: typeof import('naive-ui')['NDataTable']
     NDrawer: typeof import('naive-ui')['NDrawer']
     NDrawerContent: typeof import('naive-ui')['NDrawerContent']
     NodeList: typeof import('./components/nodeList.vue')['default']
+    NSp: typeof import('naive-ui')['NSp']
+    NSpace: typeof import('naive-ui')['NSpace']
+    NSpin: typeof import('naive-ui')['NSpin']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

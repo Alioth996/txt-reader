@@ -3,7 +3,7 @@
     <article text-dark text-4 p-8 lg-w-220 sm-w-140 xl-w-200 w-screen id="txt-body">{{ bookBody }}</article>
   </section>
   <footer class="menu" flex-c>
-    <nav flex-c justify-around bg-bookbg lg-w-220 sm-w-160 xl-w-200 w-screen text-4 text-navColor>
+    <nav flex-c justify-around bg-bookbg lg-w-220 sm-w-160 xl-w-200 w-screen text-4 text-navColor select-none>
       <div cursor-pointer flex-1 h-12 flex-c @click="openLeftSideChapters">目录</div>
       <div cursor-pointer flex-1 h-12 flex-c>
         <RouterLink text-inherit :to="{ name: 'Home' }">主页</RouterLink>
@@ -17,16 +17,19 @@
 
   <!-- 侧边目录 -->
   <n-drawer v-model:show="isChapterShow" width="360" placement="left" bg-grayLight>
-    <n-drawer-content closable>
+    <n-drawer-content closable footer-style="justify-content: start;padding:.7rem 1.5rem;">
       <template #header>
         <span>{{ currentBookName ?? '' }} </span>
         <span p-l-4>目录</span>
       </template>
       <template #default>
         <p v-for="chapter in state.chapterList" p-1 text-gray cursor-pointer text-4 class="chapter"
-          hover:text-chapterHover v-title="{ nextTitle: chapter }">{{
+          hover:text-chapterHover v-title>{{
             chapter }}
         </p>
+      </template>
+      <template #footer>
+        <div text-light>共 {{ state.chapterList.length }} 章</div>
       </template>
     </n-drawer-content>
   </n-drawer>
@@ -98,7 +101,6 @@ onMounted(() => {
     const { content, chapters } = res
     bookBody.value = content
     state.chapterList = chapters
-
   })
 })
 

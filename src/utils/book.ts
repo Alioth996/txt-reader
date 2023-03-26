@@ -32,7 +32,7 @@ export function getZW(novel: string) {
  */
 export function chaptersPaser(novel: string, chapterRegx?: RegExp): Promise<string[]> {
   // const 章节正则 = /[^\s^\t^\n]?[零〇一二三四五六七八九十百千万\d]{1,7}[章节卷部回]?[^\t|\s]+(.*)[^\n|^\r]/g  正文提取
-  const 章节正则 = /[^\s^\t^\n]?[零〇一二三四五六七八九十百千万\d]{1,7}[章节卷部回]?[\t|\s]+(.*)[^\n|^\r]/g
+  const 章节正则 = /[^\s^\t^\n]第?[零〇一二三四五六七八九十百千万\d]{1,7}[章节卷部回]?[\t|\s]+(.*)[^\n|^\r]/g
   let chapterList: RegExpMatchArray | null
 
   return new Promise<string[]>((reslove, reject) => {
